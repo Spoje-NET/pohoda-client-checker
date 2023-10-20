@@ -1,0 +1,4 @@
+debian/conf/composer.json       usr/lib/pohoda-client-config/
+src/*			        usr/share/pohoda-client-config/
+
+bin/pohoda-client-config-checker usr/bin/ 

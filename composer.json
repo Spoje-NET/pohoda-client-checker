@@ -1,0 +1,5 @@
+{
+    "require": {
+        "vitexsoftware/pohoda-connector": "dev-main"
+    }
+}

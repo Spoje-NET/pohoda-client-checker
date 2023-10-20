@@ -1,0 +1,6 @@
+pohoda-client-config (0.1.0) UNRELEASED; urgency=low
+
+  * Initial release. Closes: #nnnn
+    <nnnn is the bug number of your ITP>
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Thu, 19 Oct 2023 19:19:24 +0200

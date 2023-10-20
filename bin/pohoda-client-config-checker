@@ -1,0 +1,4 @@
+#!/bin/bash
+php -f /usr/share/pohoda-client-config/pohoda-checker.php $@
+
+

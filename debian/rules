@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+# You must remove unused comment lines for the released package.
+#export DH_VERBOSE = 1
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+%:
+	dh $@
+
+override_dh_install:
+	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//' `'"'  debian/conf/composer.json |sponge debian/conf/composer.json
+	dh_install
+	sed -i -e 's/\.\.\/vendor/\/var\/lib\/composer\/pohoda-client-config/g'	debian/pohoda-client-config/usr/share/pohoda-client-config/*.php
+	sed -i -e 's/\.\.\/\.env//g'   						debian/pohoda-client-config/usr/share/pohoda-client-config/*.php
+
