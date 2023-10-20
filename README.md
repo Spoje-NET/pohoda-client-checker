@@ -27,6 +27,22 @@ sudo apt update
 sudo apt install pohoda-client-config
 ```
 
+Configuration
+-------------
+
+First command parameter is path to .env file. 
+If no file is provided use invironment variables instead.
+
+```
+EASE_LOGGER=console
+POHODA_URL=http://mserver.intranet:10010
+POHODA_USERNAME=somelogin
+POHODA_PASSWORD=somepass
+POHODA_TIMEOUT=60
+POHODA_COMPRESS=false
+POHODA_DEBUG=true
+```
+
 See also:
 
 * [PHP Pohoda Connector](https://github.com/VitexSoftware/PHP-Pohoda-Connector) library
