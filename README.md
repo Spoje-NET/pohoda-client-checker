@@ -1,6 +1,8 @@
 Pohoda Client config
 ====================
 
+![ Pohoda Client Config logo]( pohoda-client-config.svg?raw=true)
+
 Check mServer availbility
 
 
