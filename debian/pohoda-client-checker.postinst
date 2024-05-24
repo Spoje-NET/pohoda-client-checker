@@ -3,7 +3,7 @@ set -e
 
 case "$1" in
     configure)
-	composer-debian pohoda-client-config
+	composer-debian pohoda-client-checker
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

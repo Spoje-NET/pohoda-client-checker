@@ -1,32 +1,32 @@
 {
-    "name": "deb/pohoda-client-config",
-    "description": "Configurator and configuration shared with several pohoda-tools",
-    "version": "0.1.0",
-    "type": "project",
-    "require": {
-        "deb/pohoda-connector": "*",
-        "lightools/xml": "v2.0.0",
-        "riesenia/pohoda": ">=1.5 || dev-master"
+  "name": "deb/pohoda-client-checker",
+  "description": "Configurator and configuration shared with several pohoda-tools",
+  "version": "0.1.0",
+  "type": "project",
+  "require": {
+    "deb/pohoda-connector": "*",
+    "lightools/xml": "v2.0.0",
+    "riesenia/pohoda": ">=1.5 || dev-master"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vítězslav Dvořák",
+      "email": "info@vitexsoftware.cz"
+    }
+  ],
+  "config": {
+    "vendor-dir": "/var/lib/composer/pohoda-client-checker"
+  },
+  "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "/usr/share/php/EaseCore/"
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Vítězslav Dvořák",
-            "email": "info@vitexsoftware.cz"
-        }
-    ],
-    "config": {
-        "vendor-dir": "/var/lib/composer/pohoda-client-config"
-    },
-    "minimum-stability": "dev",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "/usr/share/php/EaseCore/"
-        },
-        {
-            "type": "path",
-            "url": "/usr/share/php/mServer/"
-        }
-    ]
+    {
+      "type": "path",
+      "url": "/usr/share/php/mServer/"
+    }
+  ]
 }

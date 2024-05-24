@@ -9,8 +9,9 @@
 	dh $@
 
 override_dh_install:
-	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//' `'"'  debian/conf/composer.json |sponge debian/conf/composer.json
 	dh_install
-	sed -i -e 's/\.\.\/vendor/\/var\/lib\/composer\/pohoda-client-config/g'	debian/pohoda-client-config/usr/share/pohoda-client-config/*.php
-	sed -i -e 's/\.\.\/\.env//g'   						debian/pohoda-client-config/usr/share/pohoda-client-config/*.php
-	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  multiflexi/pohoda_checker.multiflexi.app.json |sponge debian/pohoda-client-config/usr/lib/pohoda-client-config/multiflexi/pohoda_checker.multiflexi.app.json
+	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//' `'"'  debian/conf/composer.json |sponge debian/pohoda-client-checker/usr/lib/pohoda-client-checker/composer.json
+	sed -i -e 's/\.\.\/vendor/\/var\/lib\/composer\/pohoda-client-checker/g'	debian/pohoda-client-checker/usr/share/pohoda-client-checker/*.php
+	sed -i -e 's/\.\.\/\.env//g'   						debian/pohoda-client-checker/usr/share/pohoda-client-checker/*.php
+	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  multiflexi/pohoda_checker.multiflexi.app.json |sponge debian/multiflexi-pohoda-client-checker/usr/lib/pohoda-client-checker/multiflexi/pohoda_checker.multiflexi.app.json
+

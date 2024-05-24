@@ -1,3 +1,11 @@
 /vendor/
 /.env
 /nbproject/private/
+/debian/debhelper-build-stamp
+/debian/multiflexi-pohoda-client-checker.debhelper.log
+/debian/pohoda-client-checker.debhelper.log
+/debian/multiflexi-pohoda-client-checker.substvars
+/debian/pohoda-client-checker.substvars
+/debian/multiflexi-pohoda-client-checker/
+/debian/pohoda-client-checker/
+/debian/.debhelper/

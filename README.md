@@ -1,7 +1,7 @@
 Pohoda Client config
 ====================
 
-![ Pohoda Client Config logo]( pohoda-client-config.svg?raw=true)
+![ Pohoda Client Config logo]( pohoda-client-checker.svg?raw=true)
 
 Check mServer availbility
 
@@ -26,7 +26,7 @@ wget -qO- https://repo.vitexsoftware.com/keyring.gpg | sudo tee /etc/apt/trusted
 echo "deb [signed-by=/etc/apt/trusted.gpg.d/vitexsoftware.gpg]  https://repo.vitexsoftware.com  $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
 sudo apt update
 
-sudo apt install pohoda-client-config
+sudo apt install pohoda-client-checker
 ```
 
 Configuration
