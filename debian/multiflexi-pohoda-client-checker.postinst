@@ -4,7 +4,9 @@ set -e
 
 . /usr/share/debconf/confmodule
 
-for file in `ls /usr/lib/pohoda-client/multiflexi/*.json`
+for file in `ls /usr/lib/pohoda-client-config/multiflexi/*.json`
 do
 	multiflexi-json2app $file
 done
+
+#DEBHELPER#

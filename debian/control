@@ -20,7 +20,7 @@ Description: auto-generated package by debmake
 Package: multiflexi-pohoda-client-config
 Architecture: all
 Multi-Arch: foreign
-Depends: pohoda-client-config, multiflexi
+Depends: ${misc:Depends}, pohoda-client-config, multiflexi
 Description: Pohoda Client Checker for MultiFlexi
  Add pohoda-client-checker into MultiFlexi
 
