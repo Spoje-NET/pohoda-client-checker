@@ -3,7 +3,7 @@
  * PHPmServer - Pohoda Access probe
  *
  * @author     Vítězslav Dvořák <info@vitexsoftware.cz>
- * @copyright  (C) 2023 Vitex Software
+ * @copyright  (C) 2023-2024 Vitex Software
  */
 require_once '../vendor/autoload.php';
 \Ease\Shared::init(['POHODA_URL', 'POHODA_USERNAME', 'POHODA_PASSWORD'], array_key_exists(1, $argv) && file_exists($argv[1]) ? $argv[1] : '../.env');
@@ -18,4 +18,5 @@ if (\Ease\Shared::cfg('APP_DEBUG')) {
 
 $result = $client->isOnline();
 $client->addStatusMessage(_('Connection') . ' ' . ($result ? 'OK' : 'problem'), $result ? 'success' : 'error');
+echo json_encode($result === false);
 exit($result === false ? 1 : 0);

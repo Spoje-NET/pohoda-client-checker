@@ -1,5 +1,5 @@
-Pohoda Client config
-====================
+Pohoda Client Checker
+=====================
 
 ![ Pohoda Client Config logo]( pohoda-client-checker.svg?raw=true)
 
@@ -13,6 +13,8 @@ Return code: 0
 ![Connection Problem](connection-problem.png?raw=true)
 
 Return code: 1
+
+The json output into stdout is also provided.
 
 Installation
 ------------
