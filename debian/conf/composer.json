@@ -4,7 +4,7 @@
     "version": "0.1.0",
     "type": "project",
     "require": {
-        "deb/pohoda": "*",
+        "deb/pohoda-connector": "*",
         "lightools/xml": "v2.0.0",
         "riesenia/pohoda": ">=1.5 || dev-master"
     },

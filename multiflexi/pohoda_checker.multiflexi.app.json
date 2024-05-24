@@ -8,6 +8,7 @@
     "requirements": "Pohoda",
     "deploy": "apt install pohoda-client-config",
     "homepage": "https://github.com/Spoje-NET/pohoda-client-config",
+    "topics": "Pohoda,mServer,Check",
     "environment": {
         "POHODA_PASSWORD": {
             "type": "password",

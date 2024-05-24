@@ -13,4 +13,4 @@ override_dh_install:
 	dh_install
 	sed -i -e 's/\.\.\/vendor/\/var\/lib\/composer\/pohoda-client-config/g'	debian/pohoda-client-config/usr/share/pohoda-client-config/*.php
 	sed -i -e 's/\.\.\/\.env//g'   						debian/pohoda-client-config/usr/share/pohoda-client-config/*.php
-
+	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  multiflexi/pohoda_checker.multiflexi.app.json |sponge debian/pohoda-client-config/usr/lib/pohoda-client-config/multiflexi/pohoda_checker.multiflexi.app.json
