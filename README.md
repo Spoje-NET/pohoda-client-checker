@@ -35,7 +35,7 @@ Configuration
 First command parameter is path to .env file. 
 If no file is provided use invironment variables instead.
 
-```
+```env
 EASE_LOGGER=console
 POHODA_URL=http://mserver.intranet:10010
 POHODA_USERNAME=somelogin
@@ -49,5 +49,4 @@ See also:
 
 * [PHP Pohoda Connector](https://github.com/VitexSoftware/PHP-Pohoda-Connector) library
 * [PohodaCTL](https://github.com/Spoje-NET/pohodactl)
-
 
