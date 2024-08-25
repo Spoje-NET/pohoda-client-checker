@@ -5,10 +5,11 @@
     "executable": "pohoda-client-checker",
     "setup": "",
     "cmdparams": "",
-    "requirements": "Pohoda",
+    "requirements": "mServer",
     "deploy": "apt install pohoda-client-checker",
     "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
     "topics": "Pohoda,mServer,Check",
+    "uuid": "08891f30-a0f7-43b9-8984-c8188dda9583",
     "environment": {
         "POHODA_PASSWORD": {
             "type": "password",
