@@ -9,3 +9,4 @@
 /debian/multiflexi-pohoda-client-checker/
 /debian/pohoda-client-checker/
 /debian/.debhelper/
+/.php-cs-fixer.cache
