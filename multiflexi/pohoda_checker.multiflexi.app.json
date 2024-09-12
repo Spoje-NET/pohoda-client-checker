@@ -5,7 +5,7 @@
     "executable": "pohoda-client-checker",
     "setup": "",
     "cmdparams": "",
-    "requirements": "Pohoda",
+    "requirements": "mServer",
     "deploy": "apt install pohoda-client-checker",
     "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
     "topics": "Pohoda,mServer,Check",
