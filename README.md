@@ -9,13 +9,22 @@ Check mServer availbility
 ![Connection OK](connection-success.png?raw=true)
 
 ```json
-{"message":"Response from POHODA mServer","name":"novak","server":"http:\/\/SE-APP01-NEW:10010","status":"idle","processing":"0"}
+{
+   "message":"Response from POHODA mServer",
+   "name":"novak",
+   "server":"http:\/\/SE-APP01-NEW:10010",
+   "status":"idle",
+   "processing":"0"
+}
 ```
 
 ![Connection Problem](connection-problem.png?raw=true)
 
 ```json
-{"status":false,"message":"Failed to connect to 10.11.25.23 port 10011 after 130261 ms: Couldn't connect to server"}
+{
+   "status":false,
+   "message":"Failed to connect to 10.11.25.23 port 10011 after 130261 ms: Couldn't connect to server"
+}
 ```
 
 Installation
