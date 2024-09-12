@@ -9,13 +9,8 @@
     "deploy": "apt install pohoda-client-checker",
     "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
     "topics": "Pohoda,mServer,Check",
+    "uuid": "08891f30-a0f7-43b9-8984-c8188dda9583",
     "environment": {
-        "POHODA_PASSWORD": {
-            "type": "password",
-            "description": "",
-            "required": true,
-            "defval": ""
-        },
         "POHODA_URL": {
             "type": "text",
             "description": "mServer Api Endpoint",
@@ -24,6 +19,18 @@
         "POHODA_USERNAME": {
             "type": "text",
             "description": "",
+            "defval": ""
+        },
+        "POHODA_PASSWORD": {
+            "type": "password",
+            "description": "",
+            "required": true,
+            "defval": ""
+        },
+        "POHODA_ICO": {
+            "type": "text",
+            "description": "Organization Number",
+            "required": true,
             "defval": ""
         }
     },

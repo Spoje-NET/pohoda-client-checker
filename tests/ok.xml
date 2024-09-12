@@ -1,0 +1,7 @@
+<mServer>
+    <message>Response from POHODA mServer</message>
+    <name>novak</name>
+    <server>http://SE-APP01-NEW:10010</server>
+    <status>idle</status>
+    <processing>0</processing>
+</mServer>
