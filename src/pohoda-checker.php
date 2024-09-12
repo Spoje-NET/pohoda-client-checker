@@ -29,12 +29,36 @@ if (strtolower(\Ease\Shared::cfg('APP_DEBUG', 'false')) === 'true') {
     $client->logBanner();
 }
 
-$result = $client->isOnline();
-$client->addStatusMessage(_('Connection') . ' ' . ($result ? 'OK' : 'problem'), $result ? 'success' : 'error');
-$checkResult = ($result === false);
+$result['status'] = $client->isOnline();
+$client->addStatusMessage(_('Connection') . ' ' . ($result['status'] ? 'OK' : 'problem'), $result['status'] ? 'success' : 'error');
 
-$written = file_put_contents($destination, json_encode($checkResult, \Ease\Shared::cfg('DEBUG') ? \JSON_PRETTY_PRINT : 0));
+$xml = $client->lastCurlResponse;
+
+// Check if we got XML response
+if (\is_bool($xml) || (\is_string($xml) && strpos($xml, '<?xml') === false)) {
+    $client->addStatusMessage(_('No XML response'), 'error');
+    $result['message'] = $client->lastCurlError;
+} else {
+    $client->addStatusMessage(_('XML response received'), 'success');
+    libxml_use_internal_errors(true);
+    $objXmlDocument = simplexml_load_string($xml);
+
+    if ($objXmlDocument === false) {
+        $result['message'] = 'Invalid XML';
+        $result['status'] = false;
+        $client->addStatusMessage(_('There were errors parsing the XML file'), 'error');
+
+        foreach (libxml_get_errors() as $error) {
+            $client->addStatusMessage($error->message, 'debug');
+            $result['errors'][] = $error->message;
+        }
+    } else {
+        $objJsonDocument = json_encode($objXmlDocument);
+        $result = json_decode($objJsonDocument, true);
+    }
+}
+
+$written = file_put_contents($destination, json_encode($result, \Ease\Shared::cfg('DEBUG') ? \JSON_PRETTY_PRINT : 0));
 $client->addStatusMessage(sprintf(_('Saving result to %s'), $destination), $written ? 'success' : 'error');
 
-// ? exit($written ? 0 : 1);
-exit($result === false ? 1 : 0);
+exit($written ? 0 : 1);
