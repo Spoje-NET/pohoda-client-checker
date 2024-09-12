@@ -15,6 +15,8 @@ declare(strict_types=1);
 
 require_once '../vendor/autoload.php';
 
+define('APP_NAME', 'mPohoda Check');
+
 $options = getopt('o::e::', ['output::', 'environment::']);
 \Ease\Shared::init(['POHODA_URL', 'POHODA_USERNAME', 'POHODA_PASSWORD', 'POHODA_ICO'], \array_key_exists('environment', $options) ? $options['environment'] : '../.env');
 $destination = \array_key_exists('output', $options) ? $options['output'] : \Ease\Shared::cfg('RESULT_FILE', 'php://stdout');
