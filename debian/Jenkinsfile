@@ -46,6 +46,7 @@ distributions.each {
             stage('Build ' + distribution) {
                 buildImage.inside {
                     sh 'dch -b -v ' + ver  + ' "' + env.BUILD_TAG  + '"'
+                    sh 'cat /etc/passwd'
                     sh 'sudo apt-get update --allow-releaseinfo-change'
                     sh 'sudo chown jenkins:jenkins ..'
                     sh 'debuild-pbuilder  -i -us -uc -b'
