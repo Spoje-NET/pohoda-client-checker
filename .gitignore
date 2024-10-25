@@ -10,3 +10,5 @@
 /debian/pohoda-client-checker/
 /debian/.debhelper/
 /.php-cs-fixer.cache
+/.build/
+/tests/.phpunit.result.cache

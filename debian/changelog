@@ -1,6 +1,13 @@
-pohoda-client-checker (0.1.0) UNRELEASED; urgency=low
+pohoda-client-checker (0.2.0) UNRELEASED; urgency=medium
 
+  * pohoda-transaction-report added
+
+ -- vitex <info@vitexsoftware.cz>  Fri, 25 Oct 2024 18:20:19 +0200
+
+pohoda-client-checker (0.1.0) unstable; urgency=low
+
+  [ Vítězslav Dvořák ]
   * Initial release. Closes: #nnnn
     <nnnn is the bug number of your ITP>
 
- -- Vítězslav Dvořák <info@vitexsoftware.cz>  Thu, 19 Oct 2023 19:19:24 +0200
+ -- vitex <info@vitexsoftware.cz>  Fri, 25 Oct 2024 18:19:46 +0200
