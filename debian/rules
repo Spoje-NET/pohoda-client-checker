@@ -14,4 +14,4 @@ override_dh_install:
 	sed -i -e 's/\.\.\/vendor/\/var\/lib\/composer\/pohoda-client-checker/g'	debian/pohoda-client-checker/usr/share/pohoda-client-checker/*.php
 	sed -i -e 's/\.\.\/\.env//g'   						debian/pohoda-client-checker/usr/share/pohoda-client-checker/*.php
 	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  multiflexi/pohoda_checker.multiflexi.app.json |sponge debian/multiflexi-pohoda-client-checker/usr/lib/pohoda-client-checker/multiflexi/pohoda_checker.multiflexi.app.json
-
+	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  multiflexi/pohoda_transaction_report.multiflexi.app.json |sponge debian/multiflexi-pohoda-client-checker/usr/lib/pohoda-client-checker/multiflexi/pohoda_transaction_report.multiflexi.app.json
