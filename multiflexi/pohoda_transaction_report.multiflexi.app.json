@@ -32,6 +32,12 @@
             "description": "Account IBAN",
             "required": true,
             "defval": ""
+        },
+        "POHODA_ICO": {
+            "type": "text",
+            "description": "Organization Number",
+            "required": true,
+            "defval": ""
         }
     },
     "multiflexi": "1.7.3"

@@ -22,7 +22,7 @@ require_once '../vendor/autoload.php';
 $options = getopt('o::e::', ['output::environment::']);
 
 \Ease\Shared::init(['POHODA_URL', 'POHODA_USERNAME', 'POHODA_PASSWORD', 'POHODA_ICO', 'POHODA_IBAN'], \array_key_exists('environment', $options) ? $options['environment'] : '../.env');
-$localer = new \Ease\Locale('cs_CZ', '../i18n', 'pohoda-reminder');
+$localer = new \Ease\Locale('cs_CZ', '../i18n', 'pohoda-transaction-report');
 
 $banker = new \Pohoda\BankProbe(\Ease\Shared::cfg('POHODA_BANK_IDS', ''));
 
