@@ -32,7 +32,14 @@
             "description": "Organization Number",
             "required": true,
             "defval": ""
+        },
+        "RESULT_FILE": {
+            "type": "string",
+            "description": "write output json data to",
+            "defval": "pohoda-status.json",
+            "required": false
         }
+
     },
     "multiflexi": "1.7.3"
 }

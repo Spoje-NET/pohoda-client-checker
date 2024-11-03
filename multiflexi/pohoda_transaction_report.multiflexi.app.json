@@ -44,6 +44,12 @@
             "description": "Time scope of transactions downloaded",
             "defval": "last_month",
             "required": false
+        },
+        "RESULT_FILE": {
+            "type": "string",
+            "description": "write output json data to",
+            "defval": "transaction_report.json",
+            "required": false
         }
     },
     "multiflexi": "1.7.3"
