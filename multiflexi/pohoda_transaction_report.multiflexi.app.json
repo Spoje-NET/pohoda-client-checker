@@ -38,6 +38,12 @@
             "description": "Organization Number",
             "required": true,
             "defval": ""
+        },
+        "REPORT_SCOPE": {
+            "type": "text",
+            "description": "Time scope of transactions downloaded",
+            "defval": "last_month",
+            "required": false
         }
     },
     "multiflexi": "1.7.3"
