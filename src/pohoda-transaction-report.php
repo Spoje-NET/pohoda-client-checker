@@ -43,6 +43,7 @@ if (\Ease\Shared::cfg('REPORT_SCOPE', false)) {
 $payments = [
     'source' => \Ease\Logger\Message::getCallerName($banker),
     'account' => $banker->accuntNumber(),
+    'status' => $banker->lastResponseMessage,
     'in' => [],
     'out' => [],
     'in_total' => 0,
