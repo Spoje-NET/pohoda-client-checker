@@ -1,4 +1,4 @@
-debian/conf/composer.json       usr/lib/pohoda-client-checker/
-src/*			        usr/share/pohoda-client-checker/
-
-bin/pohoda-client-checker usr/bin/ 
+bin/*                           /usr/bin/
+debian/conf/composer.json       /usr/lib/pohoda-client-checker/
+src/*			        /usr/share/pohoda-client-checker/
+src/Pohoda/*.php                /usr/lib/pohoda-client-checker/Pohoda/

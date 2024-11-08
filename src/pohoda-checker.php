@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 require_once '../vendor/autoload.php';
 
-define('APP_NAME', 'mPohoda Check');
+\define('APP_NAME', 'mPohoda Check');
 
 $options = getopt('o::e::', ['output::', 'environment::']);
 \Ease\Shared::init(['POHODA_URL', 'POHODA_USERNAME', 'POHODA_PASSWORD', 'POHODA_ICO'], \array_key_exists('environment', $options) ? $options['environment'] : '../.env');
@@ -32,7 +32,7 @@ if (strtolower(\Ease\Shared::cfg('APP_DEBUG', 'false')) === 'true') {
 }
 
 $result['status'] = $client->isOnline();
-$client->addStatusMessage(_('Connection') . ' ' . ($result['status'] ? 'OK' : 'problem'), $result['status'] ? 'success' : 'error');
+$client->addStatusMessage(_('Connection').' '.($result['status'] ? 'OK' : 'problem'), $result['status'] ? 'success' : 'error');
 
 $xml = $client->lastCurlResponse;
 

@@ -27,19 +27,43 @@ Check mServer availbility
 }
 ```
 
-Installation
-------------
+Pohoda transaction report
+-------------------------
 
 
-```shell
-sudo apt install lsb-release wget apt-transport-https bzip2
 
-
-wget -qO- https://repo.vitexsoftware.com/keyring.gpg | sudo tee /etc/apt/trusted.gpg.d/vitexsoftware.gpg
-echo "deb [signed-by=/etc/apt/trusted.gpg.d/vitexsoftware.gpg]  https://repo.vitexsoftware.com  $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
-sudo apt update
-
-sudo apt install pohoda-client-checker
+```json
+{
+    "source": "Pohoda\\BankProbe",
+    "account": "6465656645",
+    "in": {
+        "27": 629.2,
+        "28": 629.2,
+        "29": 968,
+        "30": 1452,
+        "31": 4840,
+        "32": 484,
+        "33": 2613.6,
+        "34": 1282.6,
+        "35": 968
+    },
+    "out": {
+        "22": 41805.55,
+        "24": 41805.55,
+        "25": 41805.55,
+        "26": 41805.55,
+        "36": 99,
+        "37": 1669.56,
+        "38": 15.84
+    },
+    "in_total": 9,
+    "out_total": 7,
+    "in_sum_total": 13866.6,
+    "out_sum_total": 169006.6,
+    "iban": "xxxx",
+    "from": "2024-09-01",
+    "to": "2024-09-30"
+}
 ```
 
 Configuration
@@ -71,3 +95,18 @@ MultiFlexi
 See the full list of ready-to-run applications within the MultiFlexi platform on the [application list page](https://www.multiflexi.eu/apps.php).
 
 [![MultiFlexi App](https://github.com/VitexSoftware/MultiFlexi/blob/main/doc/multiflexi-app.svg)](https://www.multiflexi.eu/apps.php)
+
+Installation
+------------
+
+
+```shell
+sudo apt install lsb-release wget apt-transport-https bzip2
+
+
+wget -qO- https://repo.vitexsoftware.com/keyring.gpg | sudo tee /etc/apt/trusted.gpg.d/vitexsoftware.gpg
+echo "deb [signed-by=/etc/apt/trusted.gpg.d/vitexsoftware.gpg]  https://repo.vitexsoftware.com  $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
+sudo apt update
+
+sudo apt install pohoda-client-checker
+```

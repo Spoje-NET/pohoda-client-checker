@@ -13,6 +13,11 @@
     "require": {
         "vitexsoftware/pohoda-connector": "dev-main"
     },
+    "autoload": {
+        "psr-4": {
+            "Pohoda\\": "src/Pohoda/"
+        }
+    },
     "require-dev": {
         "phpunit/phpunit": "*",
         "phpstan/phpstan": "*",
