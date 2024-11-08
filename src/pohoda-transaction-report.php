@@ -57,18 +57,28 @@ $payments = [
 
 if ($transactionList) {
     foreach ($transactionList as $id => $transaction) {
-        if ($banker->bankIDS === $transaction['bankHeader']['account']['ids']) {
-            $direction = ($transaction['bankHeader']['bankType'] === 'receipt');
+        if(array_key_exists('bankHeader', $transaction)){
+            if ($banker->bankIDS === $transaction['bankHeader']['account']['ids']) {
+                $direction = ($transaction['bankHeader']['bankType'] === 'receipt');
 
-            if (\array_key_exists('bankDetail', $transaction)) {
-                $amount = (float) $transaction['bankDetail']['bankItem']['homeCurrency']['unitPrice'];
-            } else {
-                $amount = (float) $transaction['bankSummary']['homeCurrency']['priceNone'];
+                if (\array_key_exists('bankDetail', $transaction)) {
+                    $amount = (float) $transaction['bankDetail']['bankItem']['homeCurrency']['unitPrice'];
+                } else {
+                    $amount = (float) $transaction['bankSummary']['homeCurrency']['priceNone'];
+                }
+
+                $payments[$direction ? 'in' : 'out'][$id] = $amount;
+                $payments[$direction ? 'in_sum_total' : 'out_sum_total'] += $amount;
+                ++$payments[$direction ? 'in_total' : 'out_total'];
             }
-
-            $payments[$direction ? 'in' : 'out'][$id] = $amount;
-            $payments[$direction ? 'in_sum_total' : 'out_sum_total'] += $amount;
-            ++$payments[$direction ? 'in_total' : 'out_total'];
+            
+        } elseif(array_key_exists('account', $transaction)) {
+           if($banker->bankIDS == $transaction['account']['ids']){
+               $direction = ($transaction['bankType'] === 'receipt');
+               
+           }
+            
+            
         }
     }
 }

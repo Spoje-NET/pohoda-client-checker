@@ -132,13 +132,13 @@ class BankProbe extends \mServer\Bank
         return $this->iban;
     }
 
-    public function transactionsFromTo()
+    public function transactionsFromTo(): array
     {
         $conds = [];
         $conds['dateFrom'] = $this->getSince()->format('Y-m-d');
         $conds['dateTill'] = $this->getUntil()->format('Y-m-d');
 
-        return $this->getColumnsFromPohoda('*', $conds);
+        return $this->getColumnsFromPohoda(['*'], $conds);
     }
 
     public function getColumnsFromPohoda($columns = ['id'], $conditions = [])
@@ -147,7 +147,11 @@ class BankProbe extends \mServer\Bank
 
         if (!empty($data)) {
             $first = current($data);
-            $this->account = $first['bankHeader']['paymentAccount']['accountNo'];
+            if(array_key_exists('bankHeader', $first)){
+                $this->account = $first['bankHeader']['paymentAccount']['accountNo'];
+            } elseif (array_key_exists ('account', $first)) {
+                $this->account = $first['account']['ids'];                
+            }
         }
 
         return $data;
