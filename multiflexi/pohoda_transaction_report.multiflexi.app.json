@@ -27,6 +27,12 @@
             "required": true,
             "defval": ""
         },
+        "POHODA_BANK_IDS": {
+            "type": "text",
+            "description": "Pohoda Bank IDS (Account name)",
+            "required": true,
+            "defval": ""
+        },
         "POHODA_IBAN": {
             "type": "text",
             "description": "Account IBAN",
