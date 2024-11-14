@@ -57,7 +57,7 @@ $payments = [
 
 if ($transactionList) {
     foreach ($transactionList as $id => $transaction) {
-        if(array_key_exists('bankHeader', $transaction)){
+        if (\array_key_exists('bankHeader', $transaction)) {
             if ($banker->bankIDS === $transaction['bankHeader']['account']['ids']) {
                 $direction = ($transaction['bankHeader']['bankType'] === 'receipt');
 
@@ -71,14 +71,10 @@ if ($transactionList) {
                 $payments[$direction ? 'in_sum_total' : 'out_sum_total'] += $amount;
                 ++$payments[$direction ? 'in_total' : 'out_total'];
             }
-            
-        } elseif(array_key_exists('account', $transaction)) {
-           if($banker->bankIDS == $transaction['account']['ids']){
-               $direction = ($transaction['bankType'] === 'receipt');
-               
-           }
-            
-            
+        } elseif (\array_key_exists('account', $transaction)) {
+            if ($banker->bankIDS === $transaction['account']['ids']) {
+                $direction = ($transaction['bankType'] === 'receipt');
+            }
         }
     }
 }

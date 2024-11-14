@@ -81,7 +81,34 @@ POHODA_ICO=12345678
 POHODA_TIMEOUT=60
 POHODA_COMPRESS=false
 POHODA_DEBUG=true
+REPORT_SCOPE=yesterday
 ```
+
+Scopes
+------
+
+ * `yesterday`
+ * `two_days_ago`
+ * `last_week`
+ * `current_month`
+ * `last_month`
+ * `last_two_months`
+ * `previous_month`
+ * `two_months_ago`
+ * `this_year`
+ * `January`  // 1
+ * `February` // 2
+ * `March`    // 3
+ * `April`    // 4
+ * `May`      // 5
+ * `June`     // 6
+ * `July`     // 7
+ * `August`   // 8
+ * `September`// 9
+ * `October`  // 10
+ * `November` // 11
+ * `December` // 12
+
 
 See also:
 

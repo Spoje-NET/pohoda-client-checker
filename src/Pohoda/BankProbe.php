@@ -50,6 +50,11 @@ class BankProbe extends \mServer\Bank
                 $this->until = (new \DateTime('yesterday'))->setTime(23, 59);
 
                 break;
+            case 'two_days_ago':
+                $this->since = (new \DateTime('-2 days'))->setTime(0, 0);
+                $this->until = (new \DateTime('-2 days'))->setTime(23, 59);
+
+                break;
             case 'last_week':
                 $this->since = new \DateTime('first day of last week');
                 $this->until = new \DateTime('last day of last week');
@@ -147,10 +152,11 @@ class BankProbe extends \mServer\Bank
 
         if (!empty($data)) {
             $first = current($data);
-            if(array_key_exists('bankHeader', $first)){
+
+            if (\array_key_exists('bankHeader', $first)) {
                 $this->account = $first['bankHeader']['paymentAccount']['accountNo'];
-            } elseif (array_key_exists ('account', $first)) {
-                $this->account = $first['account']['ids'];                
+            } elseif (\array_key_exists('account', $first)) {
+                $this->account = $first['account']['ids'];
             }
         }
 

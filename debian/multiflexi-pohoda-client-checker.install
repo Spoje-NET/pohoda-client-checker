@@ -1,2 +1,2 @@
-multiflexi/*  usr/lib/pohoda-client-checker/multiflexi
-
+multiflexi/*.json  usr/lib/pohoda-client-checker/multiflexi
+multiflexi/*.svg   usr/share/multiflexi/images/
