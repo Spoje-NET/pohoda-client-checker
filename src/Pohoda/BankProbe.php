@@ -24,10 +24,14 @@ class BankProbe extends \mServer\Bank
 {
     public string $bankIDS;
     public string $account = '';
-    public $iban;
+    public string $iban;
     protected \DateTime $since;
     protected \DateTime $until;
-
+    /**
+     * Scope of data to be processed.
+     *
+     * @param array<string, string> $options
+     */
     public function __construct(string $bankIDS, array $options = [])
     {
         parent::__construct([], $options);
@@ -111,32 +115,35 @@ class BankProbe extends \mServer\Bank
                 throw new \Exception('Unknown scope '.$scope);
         }
 
-        if (($scope !== 'auto') && ($scope !== 'today') && ($scope !== 'yesterday')) {
-            $this->since = $this->since->setTime(0, 0);
-            $this->until = $this->until->setTime(23, 59);
-        }
+        $this->since = $this->since->setTime(0, 0);
+        $this->until = $this->until->setTime(23, 59);
     }
 
-    public function getUntil()
+    public function getUntil(): \DateTime
     {
         return $this->until;
     }
 
-    public function getSince()
+    public function getSince(): \DateTime
     {
         return $this->since;
     }
 
-    public function accuntNumber()
+    public function accuntNumber(): string
     {
         return $this->account;
     }
 
-    public function getIban()
+    public function getIban(): string
     {
         return $this->iban;
     }
 
+    /**
+     * Get transactions from Pohoda.
+     *
+     * @return array<mixed>
+     */
     public function transactionsFromTo(): array
     {
         $conds = [];
@@ -146,7 +153,15 @@ class BankProbe extends \mServer\Bank
         return $this->getColumnsFromPohoda(['*'], $conds);
     }
 
-    public function getColumnsFromPohoda($columns = ['id'], $conditions = [])
+    /**
+     * Get columns from Pohoda.
+     *
+     * @param array<string>         $columns
+     * @param array<string, string> $conditions
+     *
+     * @return array<mixed>
+     */
+    public function getColumnsFromPohoda($columns = ['id'], $conditions = []): array
     {
         $data = parent::getColumnsFromPohoda($columns, $conditions);
 

@@ -13,3 +13,4 @@
 /.build/
 /tests/.phpunit.result.cache
 /composer.lock
+/.phpunit.cache/

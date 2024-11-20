@@ -37,7 +37,7 @@ if (\Ease\Shared::cfg('REPORT_SCOPE', false)) {
     $transactionList = $banker->transactionsFromTo();
 } else {
     $banker->setScope('this_year');
-    $transactionList = $banker->getColumnsFromPohoda('*');
+    $transactionList = $banker->getColumnsFromPohoda();
 }
 
 $payments = [

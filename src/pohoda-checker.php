@@ -36,8 +36,8 @@ $client->addStatusMessage(_('Connection').' '.($result['status'] ? 'OK' : 'probl
 
 $xml = $client->lastCurlResponse;
 
-// Check if we got XML response
-if (\is_bool($xml) || (\is_string($xml) && strpos($xml, '<?xml') === false)) {
+// Ensure the response is a valid XML string
+if (strpos((string) $xml, '<?xml') !== 0) {
     $client->addStatusMessage(_('No XML response'), 'error');
     $result['message'] = $client->lastCurlError;
 } else {
