@@ -7,7 +7,7 @@
    width="64"
    height="64"
    viewBox="0 0 64 64"
-   sodipodi:docname="pohoda-transaction-report.svg"
+   sodipodi:docname="b57f3a90-c604-4e19-8609-4af200571941.svg"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -128,10 +128,10 @@
      showgrid="false"
      showguides="true"
      inkscape:zoom="5.2149125"
-     inkscape:cx="14.190075"
-     inkscape:cy="12.751892"
-     inkscape:window-width="1920"
-     inkscape:window-height="1120"
+     inkscape:cx="3.4516399"
+     inkscape:cy="12.847771"
+     inkscape:window-width="2560"
+     inkscape:window-height="1365"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -141,6 +141,18 @@
      inkscape:label="Image"
      id="g8"
      style="display:inline">
+    <text
+       xml:space="preserve"
+       style="font-size:58.0368px;font-family:Dustismo;-inkscape-font-specification:Dustismo;text-align:center;text-anchor:middle;fill:#000000;stroke-width:0.302274"
+       x="30.067951"
+       y="51.395931"
+       id="text366"
+       transform="scale(1.0642552,0.93962426)"><tspan
+         sodipodi:role="line"
+         id="tspan364"
+         x="30.067951"
+         y="51.395931"
+         style="stroke-width:0.302274">{ }</tspan></text>
     <image
        width="64"
        height="64"
@@ -150,7 +162,7 @@
        style="display:none" />
     <g
        id="g259"
-       transform="matrix(0.92487308,0,0,0.92487308,-7.7050562,4.9957781)">
+       transform="matrix(1.0722339,0,0,1.0722339,-14.031297,0.69317226)">
       <g
          id="g19091"
          transform="matrix(0.59889937,0,0,0.59889937,22.678,9.8085154)">
@@ -213,17 +225,5 @@
         </g>
       </g>
     </g>
-    <text
-       xml:space="preserve"
-       style="font-size:77.1006px;font-family:Dustismo;-inkscape-font-specification:Dustismo;text-align:center;text-anchor:middle;fill:#000000;stroke-width:0.401565"
-       x="30.670324"
-       y="52.01368"
-       id="text366"
-       transform="scale(1.0642552,0.93962426)"><tspan
-         sodipodi:role="line"
-         id="tspan364"
-         x="30.670324"
-         y="52.01368"
-         style="stroke-width:0.401565">{ }</tspan></text>
   </g>
 </svg>
