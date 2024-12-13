@@ -23,6 +23,8 @@ $options = getopt('o::e::', ['output::environment::']);
 
 \Ease\Shared::init(['POHODA_URL', 'POHODA_USERNAME', 'POHODA_PASSWORD', 'POHODA_ICO', 'POHODA_IBAN'], \array_key_exists('environment', $options) ? $options['environment'] : '../.env');
 $localer = new \Ease\Locale('cs_CZ', '../i18n', 'pohoda-transaction-report');
+    $exitCode = 0;
+$transactionList = [];
 
 $banker = new \Pohoda\BankProbe(\Ease\Shared::cfg('POHODA_BANK_IDS', ''));
 
@@ -32,13 +34,7 @@ if (strtolower(\Ease\Shared::cfg('APP_DEBUG', 'false')) === 'true') {
     $banker->logBanner(\Ease\Shared::appName().' v'.\Ease\Shared::appVersion());
 }
 
-if (\Ease\Shared::cfg('REPORT_SCOPE', false)) {
-    $banker->setScope(\Ease\Shared::cfg('REPORT_SCOPE', 'yesterday'));
-    $transactionList = $banker->transactionsFromTo();
-} else {
-    $banker->setScope('this_year');
-    $transactionList = $banker->getColumnsFromPohoda();
-}
+$banker->setScope(\Ease\Shared::cfg('REPORT_SCOPE', false) ? \Ease\Shared::cfg('REPORT_SCOPE', 'yesterday') : 'this_year');
 
 $payments = [
     'source' => \Ease\Logger\Message::getCallerName($banker),
@@ -54,6 +50,23 @@ $payments = [
     'from' => $banker->getSince()->format('Y-m-d'),
     'to' => $banker->getUntil()->format('Y-m-d'),
 ];
+
+try {
+    if ($banker->isOnline()) {
+        if (\Ease\Shared::cfg('REPORT_SCOPE', false)) {
+            $transactionList = $banker->transactionsFromTo();
+        } else {
+            $transactionList = $banker->getColumnsFromPohoda();
+        }
+    } else {
+        $banker->addStatusMessage(_('Connection').' problem', 'error');
+        $exitCode = 2;
+    }
+} catch (\mServer\HttpException $ex) {
+    $banker->addStatusMessage($ex->getCode().': '.$ex->getMessage(), 'error');
+    $payments['message'] = $ex->getCode().': '.$ex->getMessage();
+
+}
 
 if ($transactionList) {
     foreach ($transactionList as $id => $transaction) {
@@ -82,4 +95,4 @@ if ($transactionList) {
 $written = file_put_contents($destination, json_encode($payments, \Ease\Shared::cfg('DEBUG') ? \JSON_PRETTY_PRINT : 0));
 $banker->addStatusMessage(sprintf(_('Saving result to %s'), $destination), $written ? 'success' : 'error');
 
-exit($written ? 0 : 1);
+exit($exitCode ? $exitCode : ($written ? 0 : 1));
