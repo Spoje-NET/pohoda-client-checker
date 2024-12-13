@@ -60,7 +60,7 @@ try {
         }
     } else {
         $banker->addStatusMessage(_('Connection').' problem', 'error');
-        $exitCode = 2;
+        $exitCode = 503;
     }
 } catch (\mServer\HttpException $ex) {
     $banker->addStatusMessage($ex->getCode().': '.$ex->getMessage(), 'error');

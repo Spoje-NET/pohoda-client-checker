@@ -31,7 +31,18 @@ if (strtolower(\Ease\Shared::cfg('APP_DEBUG', 'false')) === 'true') {
     $client->logBanner();
 }
 
-$result['status'] = $client->isOnline();
+try {
+    $result['status'] = $client->isOnline();    
+    if ($result['status'] === false) {
+        $client->addStatusMessage(_('Connection').' problem', 'error');
+        $exitCode = 503;
+    }
+} catch (\mServer\HttpException $ex) {
+    $banker->addStatusMessage($ex->getCode().': '.$ex->getMessage(), 'error');
+    $payments['message'] = $ex->getCode().': '.$ex->getMessage();
+
+}
+
 $client->addStatusMessage(_('Connection').' '.($result['status'] ? 'OK' : 'problem'), $result['status'] ? 'success' : 'error');
 
 $xml = $client->lastCurlResponse;
@@ -63,4 +74,4 @@ if (strpos((string) $xml, '<?xml') !== 0) {
 $written = file_put_contents($destination, json_encode($result, \Ease\Shared::cfg('DEBUG') ? \JSON_PRETTY_PRINT : 0));
 $client->addStatusMessage(sprintf(_('Saving result to %s'), $destination), $written ? 'success' : 'error');
 
-exit($written ? 0 : 1);
+exit($exitCode ? $exitCode : ($written ? 0 : 1));
