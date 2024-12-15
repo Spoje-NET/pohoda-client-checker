@@ -56,6 +56,12 @@
             "description": "write output json data to",
             "defval": "transaction_report.json",
             "required": false
+        },
+        "EASE_LOGGER": {
+            "type": "string",
+            "description": "write log messages using",
+            "defval": "console|syslog",
+            "required": false
         }
     },
     "multiflexi": "1.7.3"

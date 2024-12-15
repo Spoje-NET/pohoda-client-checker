@@ -38,8 +38,13 @@
             "description": "write output json data to",
             "defval": "pohoda-status.json",
             "required": false
+        },
+        "EASE_LOGGER": {
+            "type": "string",
+            "description": "write log messages using",
+            "defval": "console|syslog",
+            "required": false
         }
-
     },
     "multiflexi": "1.7.3"
 }
