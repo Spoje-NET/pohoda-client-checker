@@ -23,7 +23,7 @@ $options = getopt('o::e::', ['output::environment::']);
 
 \Ease\Shared::init(['POHODA_URL', 'POHODA_USERNAME', 'POHODA_PASSWORD', 'POHODA_ICO', 'POHODA_IBAN'], \array_key_exists('environment', $options) ? $options['environment'] : '../.env');
 $localer = new \Ease\Locale('cs_CZ', '../i18n', 'pohoda-transaction-report');
-    $exitCode = 0;
+$exitCode = 0;
 $transactionList = [];
 
 $banker = new \Pohoda\BankProbe(\Ease\Shared::cfg('POHODA_BANK_IDS', ''));
@@ -65,7 +65,6 @@ try {
 } catch (\mServer\HttpException $ex) {
     $banker->addStatusMessage($ex->getCode().': '.$ex->getMessage(), 'error');
     $payments['message'] = $ex->getCode().': '.$ex->getMessage();
-
 }
 
 if ($transactionList) {
@@ -95,4 +94,4 @@ if ($transactionList) {
 $written = file_put_contents($destination, json_encode($payments, \Ease\Shared::cfg('DEBUG') ? \JSON_PRETTY_PRINT : 0));
 $banker->addStatusMessage(sprintf(_('Saving result to %s'), $destination), $written ? 'success' : 'error');
 
-exit($exitCode ? $exitCode : ($written ? 0 : 1));
+exit($exitCode ?: ($written ? 0 : 1));

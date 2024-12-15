@@ -16,7 +16,7 @@ declare(strict_types=1);
 require_once '../vendor/autoload.php';
 
 \define('APP_NAME', 'mPohoda Check');
-
+$exitCode = 0;
 $options = getopt('o::e::', ['output::', 'environment::']);
 \Ease\Shared::init(['POHODA_URL', 'POHODA_USERNAME', 'POHODA_PASSWORD', 'POHODA_ICO'], \array_key_exists('environment', $options) ? $options['environment'] : '../.env');
 $destination = \array_key_exists('output', $options) ? $options['output'] : \Ease\Shared::cfg('RESULT_FILE', 'php://stdout');
@@ -32,7 +32,8 @@ if (strtolower(\Ease\Shared::cfg('APP_DEBUG', 'false')) === 'true') {
 }
 
 try {
-    $result['status'] = $client->isOnline();    
+    $result['status'] = $client->isOnline();
+
     if ($result['status'] === false) {
         $client->addStatusMessage(_('Connection').' problem', 'error');
         $exitCode = 503;
@@ -40,7 +41,6 @@ try {
 } catch (\mServer\HttpException $ex) {
     $banker->addStatusMessage($ex->getCode().': '.$ex->getMessage(), 'error');
     $payments['message'] = $ex->getCode().': '.$ex->getMessage();
-
 }
 
 $client->addStatusMessage(_('Connection').' '.($result['status'] ? 'OK' : 'problem'), $result['status'] ? 'success' : 'error');
@@ -74,4 +74,4 @@ if (strpos((string) $xml, '<?xml') !== 0) {
 $written = file_put_contents($destination, json_encode($result, \Ease\Shared::cfg('DEBUG') ? \JSON_PRETTY_PRINT : 0));
 $client->addStatusMessage(sprintf(_('Saving result to %s'), $destination), $written ? 'success' : 'error');
 
-exit($exitCode ? $exitCode : ($written ? 0 : 1));
+exit($exitCode ?: ($written ? 0 : 1));
