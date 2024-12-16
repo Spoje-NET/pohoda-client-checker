@@ -39,7 +39,7 @@ try {
         $exitCode = 503;
     }
 } catch (\mServer\HttpException $ex) {
-    $banker->addStatusMessage($ex->getCode().': '.$ex->getMessage(), 'error');
+    $client->addStatusMessage($ex->getCode().': '.$ex->getMessage(), 'error');
     $payments['message'] = $ex->getCode().': '.$ex->getMessage();
 }
 
