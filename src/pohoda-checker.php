@@ -41,6 +41,7 @@ try {
 } catch (\mServer\HttpException $ex) {
     $client->addStatusMessage($ex->getCode().': '.$ex->getMessage(), 'error');
     $payments['message'] = $ex->getCode().': '.$ex->getMessage();
+    $result['status'] = false;
 }
 
 $client->addStatusMessage(_('Connection').' '.($result['status'] ? 'OK' : 'problem'), $result['status'] ? 'success' : 'error');
