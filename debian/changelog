@@ -1,8 +1,9 @@
-pohoda-client-checker (0.2.0) UNRELEASED; urgency=medium
+pohoda-client-checker (1.0.0) UNRELEASED; urgency=medium
 
   * pohoda-transaction-report added
+  * improved error report
 
- -- vitex <info@vitexsoftware.cz>  Fri, 25 Oct 2024 18:20:19 +0200
+ -- vitex <info@vitexsoftware.cz>  Thu, 02 Jan 2025 11:54:41 +0100
 
 pohoda-client-checker (0.1.0) unstable; urgency=low
 

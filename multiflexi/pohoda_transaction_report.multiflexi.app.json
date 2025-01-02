@@ -62,6 +62,18 @@
             "description": "write log messages using",
             "defval": "console|syslog",
             "required": false
+        },
+        "APP_DEBUG": {
+            "type": "checkbox",
+            "description": "Show debug messages",
+            "defval": "False",
+            "required": true
+        },
+        "ZABBIX_KEY": {
+            "type": "string",
+            "description": "Default name for Zabbix Item key name",
+            "defval": "pohoda-transaction-report-{POHODA_ICO}",
+            "required": false
         }
     },
     "multiflexi": "1.7.3"

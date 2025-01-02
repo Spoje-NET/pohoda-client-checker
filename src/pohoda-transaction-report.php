@@ -36,7 +36,7 @@ if (strtolower(\Ease\Shared::cfg('APP_DEBUG', 'false')) === 'true') {
 
 $banker->setScope(\Ease\Shared::cfg('REPORT_SCOPE', false) ? \Ease\Shared::cfg('REPORT_SCOPE', 'yesterday') : 'this_year');
 
-$payments = [
+$result = [
     'source' => \Ease\Logger\Message::getCallerName($banker),
     'account' => $banker->accuntNumber(),
     'status' => $banker->lastResponseMessage,
@@ -64,7 +64,7 @@ try {
     }
 } catch (\mServer\HttpException $ex) {
     $banker->addStatusMessage($ex->getCode().': '.$ex->getMessage(), 'error');
-    $payments['message'] = $ex->getCode().': '.$ex->getMessage();
+    $result['message'] = $ex->getCode().': '.$ex->getMessage();
 }
 
 if ($transactionList) {
@@ -79,9 +79,9 @@ if ($transactionList) {
                     $amount = (float) $transaction['bankSummary']['homeCurrency']['priceNone'];
                 }
 
-                $payments[$direction ? 'in' : 'out'][$id] = $amount;
-                $payments[$direction ? 'in_sum_total' : 'out_sum_total'] += $amount;
-                ++$payments[$direction ? 'in_total' : 'out_total'];
+                $result[$direction ? 'in' : 'out'][$id] = $amount;
+                $result[$direction ? 'in_sum_total' : 'out_sum_total'] += $amount;
+                ++$result[$direction ? 'in_total' : 'out_total'];
             }
         } elseif (\array_key_exists('account', $transaction)) {
             if ($banker->bankIDS === $transaction['account']['ids']) {
@@ -91,7 +91,7 @@ if ($transactionList) {
     }
 }
 
-$written = file_put_contents($destination, json_encode($payments, \Ease\Shared::cfg('DEBUG') ? \JSON_PRETTY_PRINT : 0));
+$written = file_put_contents($destination, json_encode($result, \Ease\Shared::cfg('DEBUG') ? \JSON_PRETTY_PRINT : 0));
 $banker->addStatusMessage(sprintf(_('Saving result to %s'), $destination), $written ? 'success' : 'error');
 
 exit($exitCode ?: ($written ? 0 : 1));

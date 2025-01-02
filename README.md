@@ -18,6 +18,65 @@ Check mServer availbility
 }
 ```
 
+Example of unsuccessfull test
+
+```
+"/usr/bin/php" "/home/vitex/Projects/Spoje/pohoda-client-checker/src/pohoda-checker.php"
+01/02/2025 10:43:18 ⚙ ❲mPohoda Check⦒mServer\Client❳ mPohoda Check EaseCore 1.45.0 (PHP 8.3.6) mServer http://api@10.11.25.23:10010 PHPmServer vdev-main
+{
+    "message": "Failed to connect to 10.11.25.23 port 10010 after 133252 ms: Couldn't connect to server",
+    "diag": {
+        "url": "http:\/\/10.11.25.23:10010\/status",
+        "content_type": null,
+        "http_code": 0,
+        "header_size": 0,
+        "request_size": 0,
+        "filetime": -1,
+        "ssl_verify_result": 0,
+        "redirect_count": 0,
+        "total_time": 133.252747,
+        "namelookup_time": 3.9e-5,
+        "connect_time": 0,
+        "pretransfer_time": 0,
+        "size_upload": 0,
+        "size_download": 0,
+        "speed_download": 0,
+        "speed_upload": 0,
+        "download_content_length": -1,
+        "upload_content_length": -1,
+        "starttransfer_time": 0,
+        "redirect_time": 0,
+        "redirect_url": "",
+        "primary_ip": "",
+        "certinfo": [],
+        "primary_port": 0,
+        "local_ip": "",
+        "local_port": 0,
+        "http_version": 0,
+        "protocol": 0,
+        "ssl_verifyresult": 0,
+        "scheme": "",
+        "appconnect_time_us": 0,
+        "connect_time_us": 0,
+        "namelookup_time_us": 39,
+        "pretransfer_time_us": 0,
+        "redirect_time_us": 0,
+        "starttransfer_time_us": 0,
+        "total_time_us": 133252747,
+        "effective_method": "POST",
+        "capath": "\/etc\/ssl\/certs",
+        "cainfo": "\/etc\/ssl\/certs\/ca-certificates.crt",
+        "when": "0.12675300 1735814732"
+    },
+    "status": false
+}01/02/2025 10:45:32 🌼 ❲mPohoda Check⦒mServer\Client❳ Saving result to php://stdout
+Done.
+01/02/2025 10:45:32 💀 ❲mPohoda Check⦒mServer\Client❳ 0: Curl Error (HTTP 0): Failed to connect to 10.11.25.23 port 10010 after 133252 ms: Couldn't connect to server
+01/02/2025 10:45:32 💀 ❲mPohoda Check⦒mServer\Client❳ Connection problem
+01/02/2025 10:45:32 💀 ❲mPohoda Check⦒mServer\Client❳ No XML response
+
+```
+
 ![Connection Problem](connection-problem.png?raw=true)
 
 ```json

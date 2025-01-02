@@ -175,7 +175,6 @@ class BankProbe extends \mServer\Bank
             }
         }
 
-        return (array)$data;
+        return (array) $data;
     }
 }
-
