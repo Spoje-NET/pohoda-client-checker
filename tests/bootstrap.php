@@ -14,4 +14,9 @@ declare(strict_types=1);
  */
 
 require_once \dirname(__DIR__).'/vendor/autoload.php';
-\Ease\Shared::init(['POHODA_URL', 'POHODA_USERNAME', 'POHODA_PASSWORD', 'POHODA_ICO'], $argv[1] ?? \dirname(__DIR__).'/.env');
+
+$defaultEnv = \dirname(__DIR__).'/.env';
+$testEnv = __DIR__.'/test.env';
+$envFile = file_exists($defaultEnv) ? $defaultEnv : $testEnv;
+
+\Ease\Shared::init(['POHODA_URL', 'POHODA_USERNAME', 'POHODA_PASSWORD', 'POHODA_ICO'], $envFile);

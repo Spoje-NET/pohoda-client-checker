@@ -70,6 +70,12 @@ $xml = $client->lastCurlResponse;
 if (strpos((string) $xml, '<?xml') !== 0) {
     $client->addStatusMessage(_('No XML response'), 'error');
     $result['message'] = $client->lastCurlError;
+    $result['http_code'] = $client->lastResponseCode;
+    $result['curl_error'] = $client->lastCurlError;
+    $result['curl_info'] = $client->curlInfo;
+    if (!$exitCode) {
+        $exitCode = $client->lastResponseCode ? $client->lastResponseCode : 503;
+    }
 } else {
     $client->addStatusMessage(_('XML response received'), 'success');
     libxml_use_internal_errors(true);

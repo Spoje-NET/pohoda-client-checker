@@ -1,3 +1,12 @@
+pohoda-client-checker (1.0.1) stable; urgency=medium
+
+  * Release version 1.0.1
+  * Improved error reporting and diagnostics
+  * Added test for mServer connectivity using test.env
+  * PHPUnit config updated for compatibility
+
+ -- vitex <info@vitexsoftware.cz>  Tue, 20 May 2025 12:00:00 +0200
+
 pohoda-client-checker (1.0.0) UNRELEASED; urgency=medium
 
   * pohoda-transaction-report added
