@@ -5,10 +5,10 @@
     "executable": "pohoda-transaction-report",
     "setup": "",
     "cmdparams": "",
-    "requirements": "mServer",
+        "requirements": ["mServer"],
     "deploy": "apt install pohoda-client-checker",
     "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
-    "topics": "Pohoda,mServer,Bank,Check",
+        "topics": ["Pohoda", "mServer", "Bank", "Check"],
     "uuid": "b57f3a90-c604-4e19-8609-4af200571941",
     "environment": {
         "POHODA_URL": {
@@ -64,7 +64,7 @@
             "required": false
         },
         "APP_DEBUG": {
-            "type": "checkbox",
+            "type": "bool",
             "description": "Show debug messages",
             "defval": "False",
             "required": true
