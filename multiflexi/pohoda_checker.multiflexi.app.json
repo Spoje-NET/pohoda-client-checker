@@ -1,62 +1,95 @@
 {
-    "image": "",
-    "name": "Pohoda Checker",
-    "description": "Check Stormware mServer availbility",
-    "executable": "pohoda-client-checker",
-    "setup": "",
-    "cmdparams": "",
-        "requirements": ["mServer"],
-    "deploy": "apt install pohoda-client-checker",
-    "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
-        "topics": ["Pohoda", "mServer", "Check"],
+    "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
+    "schemaVersion": "3.0.0",
     "uuid": "08891f30-a0f7-43b9-8984-c8188dda9583",
+    "name": {
+        "en": "Pohoda Checker",
+        "cs": "Pohoda Checker"
+    },
+    "description": {
+        "en": "Check Stormware mServer availbility",
+        "cs": "Check Stormware mServer availbility"
+    },
+    "tags": [
+        "Pohoda",
+        "mServer",
+        "Check"
+    ],
+    "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
+    "image": "",
+    "executable": "pohoda-client-checker",
     "environment": {
         "POHODA_URL": {
             "type": "text",
-            "description": "mServer Api Endpoint",
-            "defval": ""
+            "description": {
+                "en": "mServer Api Endpoint",
+                "cs": "mServer Api Endpoint"
+            },
+            "defval": "",
+            "category": "API"
         },
         "POHODA_USERNAME": {
             "type": "text",
             "description": "",
-            "defval": ""
+            "defval": "",
+            "category": "API"
         },
         "POHODA_PASSWORD": {
             "type": "password",
             "description": "",
             "required": true,
-            "defval": ""
+            "defval": "",
+            "category": "API"
         },
         "POHODA_ICO": {
             "type": "text",
-            "description": "Organization Number",
+            "description": {
+                "en": "Organization Number",
+                "cs": "Organization Number"
+            },
             "required": true,
-            "defval": ""
+            "defval": "",
+            "category": "API"
         },
         "RESULT_FILE": {
             "type": "string",
-            "description": "write output json data to",
+            "description": {
+                "en": "write output json data to",
+                "cs": "write output json data to"
+            },
             "defval": "pohoda-status.json",
-            "required": false
+            "required": false,
+            "category": "Other"
         },
         "EASE_LOGGER": {
             "type": "string",
-            "description": "write log messages using",
+            "description": {
+                "en": "write log messages using",
+                "cs": "write log messages using"
+            },
             "defval": "console|syslog",
-            "required": false
+            "required": false,
+            "category": "Behavior"
         },
         "APP_DEBUG": {
             "type": "bool",
-            "description": "Show debug messages",
+            "description": {
+                "en": "Show debug messages",
+                "cs": "Show debug messages"
+            },
             "defval": "False",
-            "required": true
+            "required": true,
+            "category": "Behavior"
         },
         "ZABBIX_KEY": {
             "type": "string",
-            "description": "Default name for Zabbix Item key name",
+            "description": {
+                "en": "Default name for Zabbix Item key name",
+                "cs": "Default name for Zabbix Item key name"
+            },
             "defval": "mServer-attainability-{POHODA_ICO}",
-            "required": false
+            "required": false,
+            "category": "Other"
         }
-    },
-    "multiflexi": "1.7.3"
+    }
 }

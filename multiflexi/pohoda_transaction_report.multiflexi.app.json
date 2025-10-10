@@ -1,80 +1,126 @@
 {
-    "image": "",
-    "name": "Pohoda Transaction Report",
-    "description": "Check Bank Transactions in Stormware Pohoda",
-    "executable": "pohoda-transaction-report",
-    "setup": "",
-    "cmdparams": "",
-        "requirements": ["mServer"],
-    "deploy": "apt install pohoda-client-checker",
-    "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
-        "topics": ["Pohoda", "mServer", "Bank", "Check"],
+    "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
+    "schemaVersion": "3.0.0",
     "uuid": "b57f3a90-c604-4e19-8609-4af200571941",
+    "name": {
+        "en": "Pohoda Transaction Report",
+        "cs": "Pohoda Transaction Report"
+    },
+    "description": {
+        "en": "Check Bank Transactions in Stormware Pohoda",
+        "cs": "Check Bank Transactions in Stormware Pohoda"
+    },
+    "tags": [
+        "Pohoda",
+        "mServer",
+        "Bank",
+        "Check"
+    ],
+    "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
+    "image": "",
+    "executable": "pohoda-transaction-report",
     "environment": {
         "POHODA_URL": {
             "type": "text",
-            "description": "mServer Api Endpoint",
-            "defval": ""
+            "description": {
+                "en": "mServer Api Endpoint",
+                "cs": "mServer Api Endpoint"
+            },
+            "defval": "",
+            "category": "API"
         },
         "POHODA_USERNAME": {
             "type": "text",
             "description": "",
-            "defval": ""
+            "defval": "",
+            "category": "API"
         },
         "POHODA_PASSWORD": {
             "type": "password",
             "description": "",
             "required": true,
-            "defval": ""
+            "defval": "",
+            "category": "API"
         },
         "POHODA_BANK_IDS": {
             "type": "text",
-            "description": "Pohoda Bank IDS (Account name)",
+            "description": {
+                "en": "Pohoda Bank IDS (Account name)",
+                "cs": "Pohoda Bank IDS (Account name)"
+            },
             "required": true,
-            "defval": ""
+            "defval": "",
+            "category": "API"
         },
         "POHODA_IBAN": {
             "type": "text",
-            "description": "Account IBAN",
+            "description": {
+                "en": "Account IBAN",
+                "cs": "Account IBAN"
+            },
             "required": true,
-            "defval": ""
+            "defval": "",
+            "category": "API"
         },
         "POHODA_ICO": {
             "type": "text",
-            "description": "Organization Number",
+            "description": {
+                "en": "Organization Number",
+                "cs": "Organization Number"
+            },
             "required": true,
-            "defval": ""
+            "defval": "",
+            "category": "API"
         },
         "REPORT_SCOPE": {
             "type": "text",
-            "description": "Time scope of transactions downloaded",
+            "description": {
+                "en": "Time scope of transactions downloaded",
+                "cs": "Time scope of transactions downloaded"
+            },
             "defval": "last_month",
-            "required": false
+            "required": false,
+            "category": "Other"
         },
         "RESULT_FILE": {
             "type": "string",
-            "description": "write output json data to",
+            "description": {
+                "en": "write output json data to",
+                "cs": "write output json data to"
+            },
             "defval": "transaction_report.json",
-            "required": false
+            "required": false,
+            "category": "Other"
         },
         "EASE_LOGGER": {
             "type": "string",
-            "description": "write log messages using",
+            "description": {
+                "en": "write log messages using",
+                "cs": "write log messages using"
+            },
             "defval": "console|syslog",
-            "required": false
+            "required": false,
+            "category": "Behavior"
         },
         "APP_DEBUG": {
             "type": "bool",
-            "description": "Show debug messages",
+            "description": {
+                "en": "Show debug messages",
+                "cs": "Show debug messages"
+            },
             "defval": "False",
-            "required": true
+            "required": true,
+            "category": "Behavior"
         },
         "ZABBIX_KEY": {
             "type": "string",
-            "description": "Default name for Zabbix Item key name",
+            "description": {
+                "en": "Default name for Zabbix Item key name",
+                "cs": "Default name for Zabbix Item key name"
+            },
             "defval": "pohoda-transaction-report-{POHODA_ICO}",
-            "required": false
+            "required": false,
+            "category": "Other"
         }
-    },
-    "multiflexi": "1.7.3"
+    }
 }
