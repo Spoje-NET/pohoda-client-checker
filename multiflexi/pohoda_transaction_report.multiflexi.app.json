@@ -1,4 +1,5 @@
 {
+    "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
     "image": "",
     "name": "Pohoda Transaction Report",
     "description": "Check Bank Transactions in Stormware Pohoda",
@@ -12,12 +13,12 @@
     "uuid": "b57f3a90-c604-4e19-8609-4af200571941",
     "environment": {
         "POHODA_URL": {
-            "type": "text",
+            "type": "string",
             "description": "mServer Api Endpoint",
             "defval": ""
         },
         "POHODA_USERNAME": {
-            "type": "text",
+            "type": "string",
             "description": "",
             "defval": ""
         },
@@ -28,25 +29,25 @@
             "defval": ""
         },
         "POHODA_BANK_IDS": {
-            "type": "text",
+            "type": "string",
             "description": "Pohoda Bank IDS (Account name)",
             "required": true,
             "defval": ""
         },
         "POHODA_IBAN": {
-            "type": "text",
+            "type": "string",
             "description": "Account IBAN",
             "required": true,
             "defval": ""
         },
         "POHODA_ICO": {
-            "type": "text",
+            "type": "string",
             "description": "Organization Number",
             "required": true,
             "defval": ""
         },
         "REPORT_SCOPE": {
-            "type": "text",
+            "type": "string",
             "description": "Time scope of transactions downloaded",
             "defval": "last_month",
             "required": false

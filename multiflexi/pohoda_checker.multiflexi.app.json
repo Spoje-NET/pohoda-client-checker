@@ -1,4 +1,5 @@
 {
+    "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
     "image": "",
     "name": "Pohoda Checker",
     "description": "Check Stormware mServer availbility",
@@ -12,12 +13,12 @@
     "uuid": "08891f30-a0f7-43b9-8984-c8188dda9583",
     "environment": {
         "POHODA_URL": {
-            "type": "text",
+            "type": "string",
             "description": "mServer Api Endpoint",
             "defval": ""
         },
         "POHODA_USERNAME": {
-            "type": "text",
+            "type": "string",
             "description": "",
             "defval": ""
         },
@@ -28,7 +29,7 @@
             "defval": ""
         },
         "POHODA_ICO": {
-            "type": "text",
+            "type": "string",
             "description": "Organization Number",
             "required": true,
             "defval": ""
