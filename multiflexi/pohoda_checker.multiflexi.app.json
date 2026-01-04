@@ -1,97 +1,93 @@
 {
-    "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
-    "schemaVersion": "3.2.1",
-    "uuid": "08891f30-a0f7-43b9-8984-c8188dda9583",
-    "name": {
-        "en": "Pohoda Checker",
-        "cs": "Pohoda Checker"
+  "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
+  "schemaVersion": "3.2.1",
+  "uuid": "08891f30-a0f7-43b9-8984-c8188dda9583",
+  "name": {
+    "en": "Pohoda Checker",
+    "cs": "Pohodová zkoušečka"
+  },
+  "description": {
+    "en": "Check Stormware mServer availbility",
+    "cs": "Ověří dostupnost Stormware mServeru"
+  },
+  "tags": ["Pohoda", "mServer", "Check"],
+  "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
+  "image": "",
+  "executable": "pohoda-client-checker",
+  "environment": {
+    "POHODA_URL": {
+      "type": "string",
+      "description": {
+        "en": "mServer Api Endpoint",
+        "cs": "mServer Api Endpoint"
+      },
+      "defval": "",
+      "category": "API",
+      "required": false
     },
-    "description": {
-        "en": "Check Stormware mServer availbility",
-        "cs": "Check Stormware mServer availbility"
+    "POHODA_USERNAME": {
+      "type": "string",
+      "description": "",
+      "defval": "",
+      "category": "API",
+      "required": false
     },
-    "tags": [
-        "Pohoda",
-        "mServer",
-        "Check"
-    ],
-    "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
-    "image": "",
-    "executable": "pohoda-client-checker",
-    "environment": {
-        "POHODA_URL": {
-            "type": "string",
-            "description": {
-                "en": "mServer Api Endpoint",
-                "cs": "mServer Api Endpoint"
-            },
-            "defval": "",
-            "category": "API",
-            "required": false
-        },
-        "POHODA_USERNAME": {
-            "type": "string",
-            "description": "",
-            "defval": "",
-            "category": "API",
-            "required": false
-        },
-        "POHODA_PASSWORD": {
-            "type": "password",
-            "description": "",
-            "required": true,
-            "defval": "",
-            "category": "API"
-        },
-        "POHODA_ICO": {
-            "type": "string",
-            "description": {
-                "en": "Organization Number",
-                "cs": "Organization Number"
-            },
-            "required": true,
-            "defval": "",
-            "category": "API"
-        },
-        "RESULT_FILE": {
-            "type": "string",
-            "description": {
-                "en": "write output json data to",
-                "cs": "write output json data to"
-            },
-            "defval": "pohoda-status.json",
-            "required": false,
-            "category": "Other"
-        },
-        "EASE_LOGGER": {
-            "type": "string",
-            "description": {
-                "en": "write log messages using",
-                "cs": "write log messages using"
-            },
-            "defval": "console|syslog",
-            "required": false,
-            "category": "Behavior"
-        },
-        "APP_DEBUG": {
-            "type": "bool",
-            "description": {
-                "en": "Show debug messages",
-                "cs": "Show debug messages"
-            },
-            "defval": false,
-            "required": true,
-            "category": "Behavior"
-        },
-        "ZABBIX_KEY": {
-            "type": "string",
-            "description": {
-                "en": "Default name for Zabbix Item key name",
-                "cs": "Default name for Zabbix Item key name"
-            },
-            "defval": "mServer-attainability-{POHODA_ICO}",
-            "required": false,
-            "category": "Other"
-        }
+    "POHODA_PASSWORD": {
+      "type": "password",
+      "description": "",
+      "required": true,
+      "defval": "",
+      "category": "API"
+    },
+    "POHODA_ICO": {
+      "type": "string",
+      "description": {
+        "en": "Organization Number",
+        "cs": "Ičo organizace"
+      },
+      "required": true,
+      "defval": "",
+      "category": "API"
+    },
+    "RESULT_FILE": {
+      "type": "string",
+      "description": {
+        "en": "write output json data to",
+        "cs": "zapsat výstupní json data do"
+      },
+      "defval": "pohoda-status.json",
+      "required": false,
+      "category": "Other"
+    },
+    "EASE_LOGGER": {
+      "type": "string",
+      "description": {
+        "en": "write log messages using",
+        "cs": "zapisovat log zprávy pomocí"
+      },
+      "defval": "console|syslog",
+      "required": false,
+      "category": "Behavior"
+    },
+    "APP_DEBUG": {
+      "type": "bool",
+      "description": {
+        "en": "Show debug messages",
+        "cs": "Zobrazit ladicí zprávy"
+      },
+      "defval": false,
+      "required": true,
+      "category": "Behavior"
+    },
+    "ZABBIX_KEY": {
+      "type": "string",
+      "description": {
+        "en": "Default name for Zabbix Item key name",
+        "cs": "Výchozí název pro klíč položky Zabbix"
+      },
+      "defval": "mServer-attainability-{POHODA_ICO}",
+      "required": false,
+      "category": "Other"
     }
+  }
 }

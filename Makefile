@@ -23,7 +23,11 @@ vendor: composer.json composer.lock ## Installs composer dependencies
 cs: ## Update Coding Standards
 	vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --diff --verbose
 
-# Use phpcs to reformat code to PSR12
-codingstandards:
+
+codingstandards: ## Use phpcs to reformat code to PSR12
 	phpcbf --colors --standard=PSR12 --extensions=php --ignore=vendor/ src/ 
 
+.PHONY: validate-multiflexi-app
+validate-multiflexi-app: ## Validates the multiflexi JSON
+	multiflexi-cli app validate-json --file=multiflexi/pohoda_checker.multiflexi.app.json
+	multiflexi-cli app validate-json --file=multiflexi/pohoda_transaction_report.multiflexi.app.json
