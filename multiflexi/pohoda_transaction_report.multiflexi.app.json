@@ -1,6 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
-    "schemaVersion": "3.0.0",
+    "schemaVersion": "3.2.1",
     "uuid": "b57f3a90-c604-4e19-8609-4af200571941",
     "name": {
         "en": "Pohoda Transaction Report",
@@ -21,19 +21,21 @@
     "executable": "pohoda-transaction-report",
     "environment": {
         "POHODA_URL": {
-            "type": "text",
+            "type": "string",
             "description": {
                 "en": "mServer Api Endpoint",
                 "cs": "mServer Api Endpoint"
             },
             "defval": "",
-            "category": "API"
+            "category": "API",
+            "required": false
         },
         "POHODA_USERNAME": {
-            "type": "text",
+            "type": "string",
             "description": "",
             "defval": "",
-            "category": "API"
+            "category": "API",
+            "required": false
         },
         "POHODA_PASSWORD": {
             "type": "password",
@@ -43,7 +45,7 @@
             "category": "API"
         },
         "POHODA_BANK_IDS": {
-            "type": "text",
+            "type": "string",
             "description": {
                 "en": "Pohoda Bank IDS (Account name)",
                 "cs": "Pohoda Bank IDS (Account name)"
@@ -53,7 +55,7 @@
             "category": "API"
         },
         "POHODA_IBAN": {
-            "type": "text",
+            "type": "string",
             "description": {
                 "en": "Account IBAN",
                 "cs": "Account IBAN"
@@ -63,7 +65,7 @@
             "category": "API"
         },
         "POHODA_ICO": {
-            "type": "text",
+            "type": "string",
             "description": {
                 "en": "Organization Number",
                 "cs": "Organization Number"
@@ -73,7 +75,7 @@
             "category": "API"
         },
         "REPORT_SCOPE": {
-            "type": "text",
+            "type": "string",
             "description": {
                 "en": "Time scope of transactions downloaded",
                 "cs": "Time scope of transactions downloaded"
@@ -108,7 +110,7 @@
                 "en": "Show debug messages",
                 "cs": "Show debug messages"
             },
-            "defval": "False",
+            "defval": false,
             "required": true,
             "category": "Behavior"
         },
