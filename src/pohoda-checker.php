@@ -52,7 +52,7 @@ try {
 
     if ($result['status'] === false) {
         $client->addStatusMessage(_('Connection').' problem', 'error');
-        $exitCode = $client->lastResponseCode ? $client->lastResponseCode : 503 ;
+        $exitCode = $client->lastResponseCode ?: 503;
     }
 } catch (HttpException $ex) {
     $client->addStatusMessage($ex->getCode().': '.$ex->getMessage(), 'error');
@@ -73,8 +73,9 @@ if (strpos((string) $xml, '<?xml') !== 0) {
     $result['http_code'] = $client->lastResponseCode;
     $result['curl_error'] = $client->lastCurlError;
     $result['curl_info'] = $client->curlInfo;
+
     if (!$exitCode) {
-        $exitCode = $client->lastResponseCode ? $client->lastResponseCode : 503;
+        $exitCode = $client->lastResponseCode ?: 503;
     }
 } else {
     $client->addStatusMessage(_('XML response received'), 'success');
