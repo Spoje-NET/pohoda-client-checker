@@ -1,3 +1,11 @@
+pohoda-client-checker (1.1.0) stable; urgency=medium
+
+  * Updated documentation with full usage instructions
+  * Added environment variable reference table
+  * Documented both checker and transaction report tools
+
+ -- vitex <info@vitexsoftware.cz>  Sun, 18 May 2026 12:00:00 +0200
+
 pohoda-client-checker (1.0.1) stable; urgency=medium
 
   * Release version 1.0.1

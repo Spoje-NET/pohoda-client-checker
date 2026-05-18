@@ -1,83 +1,94 @@
 Pohoda Client Checker
 =====================
 
-![ Pohoda Client Config logo]( pohoda-client-checker.svg?raw=true)
+![Pohoda Client Checker logo](pohoda-client-checker.svg?raw=true)
 
-Check mServer availbility
+Tools for checking Stormware Pohoda mServer availability and reporting bank transactions.
 
+## Features
 
-![Connection OK](connection-success.png?raw=true)
+- **pohoda-client-checker** — verifies mServer connectivity and returns status as JSON
+- **pohoda-transaction-report** — downloads bank transaction data from Pohoda and produces a JSON report
+
+## Installation
+
+```shell
+composer require spojenet/pohoda-client-check
+```
+
+Debian/Ubuntu packages are also available.
+
+## Configuration
+
+Copy `example.env` to `.env` and fill in credentials:
+
+```env
+POHODA_URL=http://server:10010
+POHODA_ICO=12345678
+POHODA_USERNAME=user
+POHODA_PASSWORD=secret
+RESULT_FILE=/tmp/phcheck.json
+```
+
+### Environment variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `POHODA_URL` | mServer API endpoint | yes |
+| `POHODA_USERNAME` | mServer username | yes |
+| `POHODA_PASSWORD` | mServer password | yes |
+| `POHODA_ICO` | Organization number (IČO) | yes |
+| `POHODA_IBAN` | Account IBAN (transaction report) | for report |
+| `POHODA_BANK_IDS` | Bank account IDS (transaction report) | for report |
+| `REPORT_SCOPE` | Time scope: `yesterday`, `last_week`, `current_month`, `last_month`, `this_year`, or month name | no |
+| `RESULT_FILE` | Output JSON file path (default: `php://stdout`) | no |
+| `APP_DEBUG` | Show debug messages (`true`/`false`) | no |
+| `EASE_LOGGER` | Logger type e.g. `console\|syslog` | no |
+
+## Usage
+
+### Check mServer availability
+
+```shell
+pohoda-client-checker -e .env
+```
+
+Successful response:
 
 ```json
 {
-   "message":"Response from POHODA mServer",
-   "name":"novak",
-   "server":"http:\/\/SE-APP01-NEW:10010",
-   "status":"idle",
-   "processing":"0"
+   "message": "Response from POHODA mServer",
+   "name": "novak",
+   "server": "http://SE-APP01-NEW:10010",
+   "status": "idle",
+   "processing": "0"
 }
 ```
 
-Example of unsuccessfull test
+![Connection OK](connection-success.png?raw=true)
+
+### Failed connection example
 
 ```
-"/usr/bin/php" "/home/vitex/Projects/Spoje/pohoda-client-checker/src/pohoda-checker.php"
-01/02/2025 10:43:18 ⚙ ❲mPohoda Check⦒mServer\Client❳ mPohoda Check EaseCore 1.45.0 (PHP 8.3.6) mServer http://api@10.11.25.23:10010 PHPmServer vdev-main
-{
-    "message": "Failed to connect to 10.11.25.23 port 10010 after 133252 ms: Couldn't connect to server",
-    "diag": {
-        "url": "http:\/\/10.11.25.23:10010\/status",
-        "content_type": null,
-        "http_code": 0,
-        "header_size": 0,
-        "request_size": 0,
-        "filetime": -1,
-        "ssl_verify_result": 0,
-        "redirect_count": 0,
-        "total_time": 133.252747,
-        "namelookup_time": 3.9e-5,
-        "connect_time": 0,
-        "pretransfer_time": 0,
-        "size_upload": 0,
-        "size_download": 0,
-        "speed_download": 0,
-        "speed_upload": 0,
-        "download_content_length": -1,
-        "upload_content_length": -1,
-        "starttransfer_time": 0,
-        "redirect_time": 0,
-        "redirect_url": "",
-        "primary_ip": "",
-        "certinfo": [],
-        "primary_port": 0,
-        "local_ip": "",
-        "local_port": 0,
-        "http_version": 0,
-        "protocol": 0,
-        "ssl_verifyresult": 0,
-        "scheme": "",
-        "appconnect_time_us": 0,
-        "connect_time_us": 0,
-        "namelookup_time_us": 39,
-        "pretransfer_time_us": 0,
-        "redirect_time_us": 0,
-        "starttransfer_time_us": 0,
-        "total_time_us": 133252747,
-        "effective_method": "POST",
-        "capath": "\/etc\/ssl\/certs",
-        "cainfo": "\/etc\/ssl\/certs\/ca-certificates.crt",
-        "when": "0.12675300 1735814732"
-    },
-    "status": false
-}01/02/2025 10:45:32 🌼 ❲mPohoda Check⦒mServer\Client❳ Saving result to php://stdout
-Done.
-01/02/2025 10:45:32 💀 ❲mPohoda Check⦒mServer\Client❳ 0: Curl Error (HTTP 0): Failed to connect to 10.11.25.23 port 10010 after 133252 ms: Couldn't connect to server
 01/02/2025 10:45:32 💀 ❲mPohoda Check⦒mServer\Client❳ Connection problem
 01/02/2025 10:45:32 💀 ❲mPohoda Check⦒mServer\Client❳ No XML response
-
 ```
 
 ![Connection Problem](connection-problem.png?raw=true)
+
+### Bank transaction report
+
+```shell
+pohoda-transaction-report -e .env
+```
+
+## MultiFlexi integration
+
+The package ships with MultiFlexi application descriptors in the `multiflexi/` directory for both tools.
+
+## License
+
+MIT
 
 ```json
 {
@@ -190,7 +201,7 @@ Installation
 sudo apt install lsb-release wget apt-transport-https bzip2
 
 
-wget -qO- https://repo.vitexsoftware.com/keyring.gpg | sudo tee /etc/apt/trusted.gpg.d/vitexsoftware.gpg
+wget -qO- https://repo.vitexsoftware.com/KEY.gpg | sudo tee /etc/apt/trusted.gpg.d/vitexsoftware.gpg
 echo "deb [signed-by=/etc/apt/trusted.gpg.d/vitexsoftware.gpg]  https://repo.vitexsoftware.com  $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
 sudo apt update
 
