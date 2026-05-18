@@ -6,7 +6,7 @@ String[] distributions = [
     'debian:bookworm',
     'debian:trixie',
     'debian:forky',
-    'ubuntu:jammy',
+//    'ubuntu:jammy',
     'ubuntu:noble'
 ]
 
