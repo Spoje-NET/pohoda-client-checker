@@ -1,0 +1,38 @@
+.TH POHODA-TRANSACTION-REPORT 1 "" "1.0.1" "User Commands"
+.SH NAME
+pohoda\-transaction\-report \- generate a Pohoda bank transaction report
+.SH SYNOPSIS
+.B pohoda-transaction-report
+[\fB\-e\fR \fIENV_FILE\fR] [\fB\-o\fR \fIOUTPUT\fR]
+.SH DESCRIPTION
+Connects to a Sormware Pohoda mServer instance and generates a report of
+bank transactions. Results are written to stdout or a file specified with
+\fB\-o\fR.
+.SH OPTIONS
+.TP
+.BR \-e ", " \-\-environment =\fIFILE\fR
+Path to the .env file containing connection parameters. Defaults to the
+system environment.
+.TP
+.BR \-o ", " \-\-output =\fIFILE\fR
+Write report to \fIFILE\fR instead of stdout.
+.SH ENVIRONMENT
+.TP
+.B POHODA_URL
+Base URL of the Pohoda mServer instance.
+.TP
+.B POHODA_USERNAME
+Username for mServer authentication.
+.TP
+.B POHODA_PASSWORD
+Password for mServer authentication.
+.TP
+.B POHODA_ICO
+Company ICO (tax identifier) to query.
+.TP
+.B POHODA_IBAN
+IBAN of the bank account to report on.
+.SH SEE ALSO
+.BR pohoda-client-checker (1)
+.SH AUTHOR
+Vítězslav Dvořák <info@vitexsoftware.cz>

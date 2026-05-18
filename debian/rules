@@ -1,17 +1,37 @@
 #!/usr/bin/make -f
-# You must remove unused comment lines for the released package.
-#export DH_VERBOSE = 1
-#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
-#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+PKG_VERSION := $(shell dpkg-parsechangelog -S Version | sed 's/~.*//')
+PKG_SOURCE  := $(shell jq -r '.name' composer.json)
+PKG_TYPE    := $(shell jq -r '.type' composer.json)
 
 %:
 	dh $@
 
+override_dh_auto_test:
+	appstreamcli validate --pedantic --no-net \
+	    debian/io.github.spoje_net.pohoda_client_checker.metainfo.xml
+
 override_dh_install:
 	dh_install
-	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//' `'"'  debian/conf/composer.json |sponge debian/pohoda-client-checker/usr/lib/pohoda-client-checker/composer.json
-	sed -i -e 's/\.\.\/vendor/\/var\/lib\/composer\/pohoda-client-checker/g'	debian/pohoda-client-checker/usr/share/pohoda-client-checker/*.php
-	sed -i -e 's/\.\.\/\.env//g'   						debian/pohoda-client-checker/usr/share/pohoda-client-checker/*.php
-	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  multiflexi/pohoda_checker.multiflexi.app.json |sponge debian/multiflexi-pohoda-client-checker/usr/lib/pohoda-client-checker/multiflexi/pohoda_checker.multiflexi.app.json
-	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  multiflexi/pohoda_transaction_report.multiflexi.app.json |sponge debian/multiflexi-pohoda-client-checker/usr/lib/pohoda-client-checker/multiflexi/pohoda_transaction_report.multiflexi.app.json
+	install -m 644 debian/autoload.php \
+	    debian/pohoda-client-checker/usr/share/pohoda-client-checker/autoload.php
+	sed -i "s|require_once '../vendor/autoload.php'|require_once '/usr/share/pohoda-client-checker/autoload.php'|" \
+	    debian/pohoda-client-checker/usr/share/pohoda-client-checker/*.php
+	sed -i -e 's/\.\.\/\.env//g' \
+	    debian/pohoda-client-checker/usr/share/pohoda-client-checker/*.php
+	sed -i "1a defined('APP_NAME') || define('APP_NAME', '$(PKG_SOURCE)');" \
+	    debian/pohoda-client-checker/usr/share/pohoda-client-checker/autoload.php
+	sed -i "s|'unknown'|'$(PKG_SOURCE)'|" \
+	    debian/pohoda-client-checker/usr/share/pohoda-client-checker/autoload.php
+	sed -i "s|'0.0.0'|'$(PKG_VERSION)'|" \
+	    debian/pohoda-client-checker/usr/share/pohoda-client-checker/autoload.php
+	sed -i "s|'library'|'$(PKG_TYPE)'|g" \
+	    debian/pohoda-client-checker/usr/share/pohoda-client-checker/autoload.php
+	sed -i "2a defined('APP_VERSION') || define('APP_VERSION', '$(PKG_VERSION)');" \
+	    debian/pohoda-client-checker/usr/share/pohoda-client-checker/autoload.php
+	jq '.version = "$(PKG_VERSION)"' debian/conf/composer.json \
+	    | sponge debian/pohoda-client-checker/usr/lib/pohoda-client-checker/composer.json
+	jq '.version = "$(PKG_VERSION)"' multiflexi/pohoda_checker.multiflexi.app.json \
+	    | sponge debian/multiflexi-pohoda-client-checker/usr/lib/pohoda-client-checker/multiflexi/pohoda_checker.multiflexi.app.json
+	jq '.version = "$(PKG_VERSION)"' multiflexi/pohoda_transaction_report.multiflexi.app.json \
+	    | sponge debian/multiflexi-pohoda-client-checker/usr/lib/pohoda-client-checker/multiflexi/pohoda_transaction_report.multiflexi.app.json
