@@ -12,5 +12,6 @@
 /.php-cs-fixer.cache
 /.build/
 /tests/.phpunit.result.cache
+/.phpunit.result.cache
 /composer.lock
 /.phpunit.cache/
