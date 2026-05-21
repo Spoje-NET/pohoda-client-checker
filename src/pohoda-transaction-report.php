@@ -17,9 +17,9 @@ namespace Pohoda;
 
 require_once '../vendor/autoload.php';
 
-\define('APP_NAME', 'Pohoda Transaction Reporter');
+defined('APP_NAME') || define('APP_NAME', 'Pohoda Transaction Reporter');
 
-$options = getopt('o::e::', ['output::environment::']);
+$options = getopt('o::e::', ['output::', 'environment::']);
 
 \Ease\Shared::init(['POHODA_URL', 'POHODA_USERNAME', 'POHODA_PASSWORD', 'POHODA_ICO', 'POHODA_IBAN'], \array_key_exists('environment', $options) ? $options['environment'] : '../.env');
 $localer = new \Ease\Locale('cs_CZ', '../i18n', 'pohoda-transaction-report');
@@ -38,7 +38,7 @@ $banker->setScope(\Ease\Shared::cfg('REPORT_SCOPE', false) ? \Ease\Shared::cfg('
 
 $result = [
     'source' => \Ease\Logger\Message::getCallerName($banker),
-    'account' => $banker->accuntNumber(),
+    'account' => $banker->accountNumber(),
     'status' => $banker->lastResponseMessage,
     'in' => [],
     'out' => [],

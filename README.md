@@ -12,18 +12,30 @@ Tools for checking Stormware Pohoda mServer availability and reporting bank tran
 
 ## Installation
 
+Debian/Ubuntu packages via the VitexSoftware repository:
+
+```shell
+sudo apt install lsb-release wget apt-transport-https
+
+wget -qO- https://repo.vitexsoftware.com/KEY.gpg | sudo tee /etc/apt/trusted.gpg.d/vitexsoftware.gpg
+echo "deb [signed-by=/etc/apt/trusted.gpg.d/vitexsoftware.gpg] https://repo.vitexsoftware.com $(lsb_release -sc) main" \
+    | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
+sudo apt update
+sudo apt install pohoda-client-checker
+```
+
+Or via Composer:
+
 ```shell
 composer require spojenet/pohoda-client-check
 ```
-
-Debian/Ubuntu packages are also available.
 
 ## Configuration
 
 Copy `example.env` to `.env` and fill in credentials:
 
 ```env
-POHODA_URL=http://server:10010
+POHODA_URL=http://server:40000
 POHODA_ICO=12345678
 POHODA_USERNAME=user
 POHODA_PASSWORD=secret
@@ -40,17 +52,19 @@ RESULT_FILE=/tmp/phcheck.json
 | `POHODA_ICO` | Organization number (IČO) | yes |
 | `POHODA_IBAN` | Account IBAN (transaction report) | for report |
 | `POHODA_BANK_IDS` | Bank account IDS (transaction report) | for report |
-| `REPORT_SCOPE` | Time scope: `yesterday`, `last_week`, `current_month`, `last_month`, `this_year`, or month name | no |
+| `REPORT_SCOPE` | Time scope (see [Scopes](#scopes)) | no |
 | `RESULT_FILE` | Output JSON file path (default: `php://stdout`) | no |
 | `APP_DEBUG` | Show debug messages (`true`/`false`) | no |
 | `EASE_LOGGER` | Logger type e.g. `console\|syslog` | no |
 
 ## Usage
 
+Both tools accept `-e`/`--environment` to specify the env file and `-o`/`--output` to specify the output file.
+
 ### Check mServer availability
 
 ```shell
-pohoda-client-checker -e .env
+pohoda-client-checker --environment=.env
 ```
 
 Successful response:
@@ -58,8 +72,8 @@ Successful response:
 ```json
 {
    "message": "Response from POHODA mServer",
-   "name": "novak",
-   "server": "http://SE-APP01-NEW:10010",
+   "name": "NOVAK",
+   "server": "http://SE-APP01-NEW:40000",
    "status": "idle",
    "processing": "0"
 }
@@ -67,11 +81,13 @@ Successful response:
 
 ![Connection OK](connection-success.png?raw=true)
 
-### Failed connection example
+Failed connection:
 
-```
-01/02/2025 10:45:32 💀 ❲mPohoda Check⦒mServer\Client❳ Connection problem
-01/02/2025 10:45:32 💀 ❲mPohoda Check⦒mServer\Client❳ No XML response
+```json
+{
+   "status": false,
+   "message": "Failed to connect to server port 40000 after 130261 ms: Couldn't connect to server"
+}
 ```
 
 ![Connection Problem](connection-problem.png?raw=true)
@@ -79,131 +95,56 @@ Successful response:
 ### Bank transaction report
 
 ```shell
-pohoda-transaction-report -e .env
+pohoda-transaction-report --environment=.env --output=/tmp/report.json
 ```
 
-## MultiFlexi integration
-
-The package ships with MultiFlexi application descriptors in the `multiflexi/` directory for both tools.
-
-## License
-
-MIT
-
-```json
-{
-   "status":false,
-   "message":"Failed to connect to 10.11.25.23 port 10011 after 130261 ms: Couldn't connect to server"
-}
-```
-
-Pohoda transaction report
--------------------------
-
-
+Example output:
 
 ```json
 {
     "source": "Pohoda\\BankProbe",
     "account": "6465656645",
-    "in": {
-        "27": 629.2,
-        "28": 629.2,
-        "29": 968,
-        "30": 1452,
-        "31": 4840,
-        "32": 484,
-        "33": 2613.6,
-        "34": 1282.6,
-        "35": 968
-    },
-    "out": {
-        "22": 41805.55,
-        "24": 41805.55,
-        "25": 41805.55,
-        "26": 41805.55,
-        "36": 99,
-        "37": 1669.56,
-        "38": 15.84
-    },
-    "in_total": 9,
-    "out_total": 7,
-    "in_sum_total": 13866.6,
-    "out_sum_total": 169006.6,
-    "iban": "xxxx",
+    "in": {"27": 629.2, "28": 629.2},
+    "out": {"22": 41805.55},
+    "in_total": 2,
+    "out_total": 1,
+    "in_sum_total": 1258.4,
+    "out_sum_total": 41805.55,
+    "iban": "CZ0000000000000000000000",
     "from": "2024-09-01",
     "to": "2024-09-30"
 }
 ```
 
-Configuration
--------------
+## Scopes
 
-First command parameter is path to .env file. 
-If no file is provided use invironment variables instead.
+The `REPORT_SCOPE` variable (or passed dynamically) accepts:
 
-```env
-EASE_LOGGER=console
-POHODA_URL=http://mserver.intranet:10010
-POHODA_USERNAME=somelogin
-POHODA_PASSWORD=somepass
-POHODA_ICO=12345678
-POHODA_TIMEOUT=60
-POHODA_COMPRESS=false
-POHODA_DEBUG=true
-REPORT_SCOPE=yesterday
-```
+- `yesterday`
+- `two_days_ago`
+- `last_week`
+- `current_month`
+- `last_month`
+- `last_two_months`
+- `previous_month`
+- `two_months_ago`
+- `this_year`
+- `January` … `December` (current year)
 
-Scopes
-------
+## MultiFlexi integration
 
- * `yesterday`
- * `two_days_ago`
- * `last_week`
- * `current_month`
- * `last_month`
- * `last_two_months`
- * `previous_month`
- * `two_months_ago`
- * `this_year`
- * `January`  // 1
- * `February` // 2
- * `March`    // 3
- * `April`    // 4
- * `May`      // 5
- * `June`     // 6
- * `July`     // 7
- * `August`   // 8
- * `September`// 9
- * `October`  // 10
- * `November` // 11
- * `December` // 12
+The package ships with MultiFlexi application descriptors in the `multiflexi/` directory for both tools.
 
-
-See also:
-
-* [PHP Pohoda Connector](https://github.com/VitexSoftware/PHP-Pohoda-Connector) library
-* [PohodaCTL](https://github.com/Spoje-NET/pohodactl)
-
-MultiFlexi
-----------
-
-**Pohoda Client Checker** is ready for run as [MultiFlexi](https://multiflexi.eu) application.
-See the full list of ready-to-run applications within the MultiFlexi platform on the [application list page](https://www.multiflexi.eu/apps.php).
+**Pohoda Client Checker** is ready to run as a [MultiFlexi](https://multiflexi.eu) application.
+See the full list of ready-to-run applications on the [application list page](https://www.multiflexi.eu/apps.php).
 
 [![MultiFlexi App](https://github.com/VitexSoftware/MultiFlexi/blob/main/doc/multiflexi-app.svg)](https://www.multiflexi.eu/apps.php)
 
-Installation
-------------
+## See also
 
+- [PHP Pohoda Connector](https://github.com/VitexSoftware/PHP-Pohoda-Connector) library
+- [PohodaCTL](https://github.com/Spoje-NET/pohodactl)
 
-```shell
-sudo apt install lsb-release wget apt-transport-https bzip2
+## License
 
-
-wget -qO- https://repo.vitexsoftware.com/KEY.gpg | sudo tee /etc/apt/trusted.gpg.d/vitexsoftware.gpg
-echo "deb [signed-by=/etc/apt/trusted.gpg.d/vitexsoftware.gpg]  https://repo.vitexsoftware.com  $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
-sudo apt update
-
-sudo apt install pohoda-client-checker
-```
+MIT

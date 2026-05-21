@@ -129,7 +129,7 @@ class BankProbe extends \mServer\Bank
         return $this->since;
     }
 
-    public function accuntNumber(): string
+    public function accountNumber(): string
     {
         return $this->account;
     }

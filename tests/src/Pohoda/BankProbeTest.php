@@ -74,11 +74,11 @@ class BankProbeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers \Pohoda\BankProbe::accuntNumber
+     * @covers \Pohoda\BankProbe::accountNumber
      */
-    public function testaccuntNumber(): void
+    public function testaccountNumber(): void
     {
-        $this->assertIsString($this->object->accuntNumber());
+        $this->assertIsString($this->object->accountNumber());
     }
 
     /**
