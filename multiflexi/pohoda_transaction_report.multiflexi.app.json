@@ -10,38 +10,16 @@
     "en": "Check Bank Transactions in Stormware Pohoda",
     "cs": "Zkontrolovat bankovní transakce ve Stormware Pohoda"
   },
-  "tags": ["Pohoda", "mServer", "Bank", "Check"],
+  "tags": [
+    "Pohoda",
+    "mServer",
+    "Bank",
+    "Check"
+  ],
   "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
   "image": "",
   "executable": "pohoda-transaction-report",
   "environment": {
-    "POHODA_URL": {
-      "type": "string",
-      "description": {
-        "en": "mServer Api Endpoint",
-        "cs": "mServer Api Endpoint"
-      },
-      "defval": "",
-      "category": "API",
-      "required": false
-    },
-    "POHODA_USERNAME": {
-      "type": "string",
-      "description": {
-        "en": "mServer Username",
-        "cs": "mServer Uživatelské jméno"
-      },
-      "defval": "",
-      "category": "API",
-      "required": false
-    },
-    "POHODA_PASSWORD": {
-      "type": "password",
-      "description": "",
-      "required": true,
-      "defval": "",
-      "category": "API"
-    },
     "POHODA_BANK_IDS": {
       "type": "string",
       "description": {
@@ -57,16 +35,6 @@
       "description": {
         "en": "Account IBAN",
         "cs": "IBAN účtu"
-      },
-      "required": true,
-      "defval": "",
-      "category": "API"
-    },
-    "POHODA_ICO": {
-      "type": "string",
-      "description": {
-        "en": "Organization Number",
-        "cs": "Ičo organizace"
       },
       "required": true,
       "defval": "",
@@ -122,5 +90,8 @@
       "required": false,
       "category": "Other"
     }
-  }
+  },
+  "requirements": [
+    "mserver"
+  ]
 }

@@ -10,45 +10,15 @@
     "en": "Check Stormware mServer availbility",
     "cs": "Ověří dostupnost Stormware mServeru"
   },
-  "tags": ["Pohoda", "mServer", "Check"],
+  "tags": [
+    "Pohoda",
+    "mServer",
+    "Check"
+  ],
   "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
   "image": "",
   "executable": "pohoda-client-checker",
   "environment": {
-    "POHODA_URL": {
-      "type": "string",
-      "description": {
-        "en": "mServer Api Endpoint",
-        "cs": "mServer Api Endpoint"
-      },
-      "defval": "",
-      "category": "API",
-      "required": false
-    },
-    "POHODA_USERNAME": {
-      "type": "string",
-      "description": "",
-      "defval": "",
-      "category": "API",
-      "required": false
-    },
-    "POHODA_PASSWORD": {
-      "type": "password",
-      "description": "",
-      "required": true,
-      "defval": "",
-      "category": "API"
-    },
-    "POHODA_ICO": {
-      "type": "string",
-      "description": {
-        "en": "Organization Number",
-        "cs": "Ičo organizace"
-      },
-      "required": true,
-      "defval": "",
-      "category": "API"
-    },
     "RESULT_FILE": {
       "type": "string",
       "description": {
@@ -89,5 +59,8 @@
       "required": false,
       "category": "Other"
     }
-  }
+  },
+  "requirements": [
+    "mserver"
+  ]
 }
