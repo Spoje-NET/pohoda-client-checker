@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
-  "schemaVersion": "3.2.1",
+  "schemaVersion": "3.4.0",
   "uuid": "b57f3a90-c604-4e19-8609-4af200571941",
   "name": {
     "en": "Pohoda Transaction Report",
@@ -19,6 +19,19 @@
   "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
   "image": "",
   "executable": "pohoda-transaction-report",
+  "events": {
+    "consumes": {
+      "bank.statement.downloaded": {
+        "description": "A bank statement file was downloaded",
+        "format": "file"
+      }
+    },
+    "emits": {
+      "bank.transaction.reported": {
+        "description": "A bank transaction report was produced"
+      }
+    }
+  },
   "environment": {
     "POHODA_BANK_IDS": {
       "type": "string",

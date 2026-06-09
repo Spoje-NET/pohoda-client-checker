@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
-  "schemaVersion": "3.2.1",
+  "schemaVersion": "3.4.0",
   "uuid": "08891f30-a0f7-43b9-8984-c8188dda9583",
   "name": {
     "en": "Pohoda Checker",
@@ -18,6 +18,13 @@
   "homepage": "https://github.com/Spoje-NET/pohoda-client-checker",
   "image": "",
   "executable": "pohoda-client-checker",
+  "events": {
+    "emits": {
+      "client.checked": {
+        "description": "Client/customer records were validated"
+      }
+    }
+  },
   "environment": {
     "RESULT_FILE": {
       "type": "string",
